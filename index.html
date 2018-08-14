@@ -540,6 +540,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Node.js学习：使用loopback做邮箱验证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="断桥百晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/011.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BAIXS's BOOK">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Node.js学习：使用loopback做邮箱验证/" itemprop="url">Node.js学习：使用loopback做邮箱验证</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T17:52:57+08:00">
+                2017-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。</p>
+<h3 id="使用LoopBack用户模型注册用户"><a href="#使用LoopBack用户模型注册用户" class="headerlink" title="使用LoopBack用户模型注册用户"></a>使用LoopBack用户模型注册用户</h3><h4 id="创建新用户"><a href="#创建新用户" class="headerlink" title="创建新用户"></a>创建新用户</h4><p>a. 通过添加模型实例创建用户（注册用户），电子邮件和密码是唯一必需的属性。</p>
+<p><strong>/server/boot/my-boot-script.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(app) &#123;</span><br><span class="line">  var User = app.models.User;</span><br><span class="line">  User.create(&#123;email: &apos;foo@bar.com&apos;, password: &apos;bar&apos;&#125;, function(err, userInstance) &#123;</span><br><span class="line">    console.log(userInstance);</span><br><span class="line">  &#125;);</span><br><span class="line">  //...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：如果/boot文件夹中没有这个js文件，可以自己新建一个<code>my-boot-script.js</code>。这个文件夹中脚本的作用是执行一些初始化的设置。默认情况下，运行引导脚本后，应用程序在启动时会自动执行该文件夹中的脚本。</p>
+</blockquote>
+<p>b. 使用POST /users接口创建一个新的用户实例，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -H &quot;Content-Type:application/json&quot;         \</span><br><span class="line">-d &apos;&#123;&quot;email&quot;: &quot;me@domain.com&quot;, &quot;password&quot;: &quot;secret&quot;&#125;&apos;   \</span><br><span class="line">http://localhost:3000/api/users</span><br></pre></td></tr></table></figure>
+<h4 id="添加其他注册限制"><a href="#添加其他注册限制" class="headerlink" title="添加其他注册限制"></a>添加其他注册限制</h4><p>我们可能会在注册过程中添加方法，比如查看给定的用户名是否可用，或者是否已经注册了一个电子邮件地址。通常做法是在User对象上添加一个beforeRemote方法。</p>
+<h4 id="验证电子邮件地址"><a href="#验证电子邮件地址" class="headerlink" title="验证电子邮件地址"></a>验证电子邮件地址</h4><p>通常，应用程序将要求用户在登录之前验证其电子邮件地址。所以我们需要向用户发送一封包含链接的电子邮件，来验证其地址。一旦用户点击链接，他们就会被重定向到网站的登录页面（“/”），并且将能够正常登录。</p>
+<p>如果需要强制验证注册，请在server/model-config.json中将emailVerificationRequired用户模型属性设置为true;</p>
+<p><strong>server/model-config.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&quot;user&quot;: &#123;</span><br><span class="line">    &quot;dataSource&quot;: &quot;db&quot;,</span><br><span class="line">    &quot;public&quot;: true,</span><br><span class="line">    &quot;options&quot;: &#123;</span><br><span class="line">      &quot;emailVerificationRequired&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>通过REST，使用<code>GET /users/confirm</code>接口来验证用户的电子邮件地址。</p>
+<p>此示例在User模型上创建了一个远程钩子，并在create()方法被调用之后执行。</p>
+<p><strong>/common/models/user.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'../../server/config.json'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//send verification email after registration</span></span><br><span class="line">  user.afterRemote(<span class="string">'create'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">context, userInstance, next</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'&gt; user.afterRemote triggered'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> options = &#123;</span><br><span class="line">      type: <span class="string">'email'</span>,</span><br><span class="line">      to: userInstance.email,</span><br><span class="line">      <span class="keyword">from</span>: <span class="string">'noreply@loopback.com'</span>,</span><br><span class="line">      subject: <span class="string">'Thanks for registering.'</span>,</span><br><span class="line">      template: path.resolve(__dirname, <span class="string">'../../server/views/verify.ejs'</span>),</span><br><span class="line">      redirect: <span class="string">'/verified'</span>,</span><br><span class="line">      user: user</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    userInstance.verify(options, <span class="function"><span class="keyword">function</span>(<span class="params">err, response, next</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line"></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'&gt; verification email sent:'</span>, response);</span><br><span class="line"></span><br><span class="line">      context.res.render(<span class="string">'response'</span>, &#123;</span><br><span class="line">        title: <span class="string">'Signed up successfully'</span>,</span><br><span class="line">        content: <span class="string">'Please check your email and click on the verification link '</span> -</span><br><span class="line">            <span class="string">'before logging in.'</span>,</span><br><span class="line">        redirectTo: <span class="string">'/'</span>,</span><br><span class="line">        redirectToLinkText: <span class="string">'Log in'</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>有关完整的示例，请参阅<a href="https://github.com/strongloop/loopback-example-user-management" target="_blank" rel="noopener">loopback-example-user-management</a>中的user.js。</p>
+<p>接下来，我们将以<code>loopback-example-user-management</code>为例，详细地完成验证邮箱的过程。</p>
+<p>首先需要在<code>/server/model-config.json</code>里配置邮件数据源。</p>
+<p><strong>/server/model-config.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// ···</span><br><span class="line">&quot;Role&quot;: &#123;</span><br><span class="line">  &quot;dataSource&quot;: &quot;db&quot;,</span><br><span class="line">  &quot;public&quot;: false</span><br><span class="line">&#125;,</span><br><span class="line">&quot;Email&quot;: &#123;</span><br><span class="line">  &quot;dataSource&quot;: &quot;emailDs&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;user&quot;: &#123;</span><br><span class="line">  &quot;dataSource&quot;: &quot;db&quot;,</span><br><span class="line">  &quot;public&quot;: true,</span><br><span class="line">  &quot;options&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">···</span><br></pre></td></tr></table></figure>
+<p>接下来配置<code>/server/datasources.json</code>文件，即配置邮件数据源，示例项目中的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&quot;emailDs&quot;: &#123;</span><br><span class="line">  &quot;name&quot;: &quot;emailDs&quot;,</span><br><span class="line">  &quot;connector&quot;: &quot;mail&quot;,</span><br><span class="line">  &quot;transports&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;type&quot;: &quot;smtp&quot;,</span><br><span class="line">      &quot;host&quot;: &quot;smtp.gmail.com&quot;,</span><br><span class="line">      &quot;secure&quot;: true,</span><br><span class="line">      &quot;port&quot;: 465,</span><br><span class="line">      &quot;tls&quot;: &#123;</span><br><span class="line">        &quot;rejectUnauthorized&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;auth&quot;: &#123;</span><br><span class="line">        &quot;user&quot;: &quot;email@address.com&quot;,</span><br><span class="line">        &quot;pass&quot;: &quot;password&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要改两个地方，一个是host要改成你指定的源地址，如果是gmail邮箱，就写成smtp.gmail.com，如果是qq邮箱，就改成smtp.qq.com。另外一个改动是auth中的user和pass，这里写的是用于发送邮件的邮箱的邮箱名和密码，也就是设置用这个邮箱给注册的用户邮箱发送邮件。</p>
+<p>现在运行项目，打开<a href="http://localhost:3000/explorer" target="_blank" rel="noopener">http://localhost:3000/explorer</a>，我们现在在API explorer中注册一个用户。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3396508-a0c383cf1f8ae6f6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3396508-21f7a85f0a4f6835.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>它将返回一个提示网页，这表示验证邮件已经成功发到了注册的邮箱中。</p>
+<p>打开邮箱，激活链接，再次登录即可成功。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3396508-2a79dad4442a12a8.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>现在回到explorer，使用登录接口。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3396508-f66320234c58e36e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3396508-30fee2b86137cf76.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>返回的参数中，id为返回的token，ttl为token默认的有效周期，可以手动修改。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/Node.js学习：使用Loopback3.0构建应用程序（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -876,7 +1053,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
