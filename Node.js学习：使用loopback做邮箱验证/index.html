@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="注册用户LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。 使用LoopBack用户模型注册用户创建新用户a. 通过添加模型实例创建用户（注册用户），电子邮件和密码是唯一必需的属性。 /server/boot/my-boot-script.js">
+<meta name="description" content="注册用户LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js学习：使用loopback做邮箱验证">
 <meta property="og:url" content="http://yoursite.com/Node.js学习：使用loopback做邮箱验证/index.html">
 <meta property="og:site_name" content="BAIXS&#39;s BOOK">
-<meta property="og:description" content="注册用户LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。 使用LoopBack用户模型注册用户创建新用户a. 通过添加模型实例创建用户（注册用户），电子邮件和密码是唯一必需的属性。 /server/boot/my-boot-script.js">
+<meta property="og:description" content="注册用户LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3396508-a0c383cf1f8ae6f6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3396508-21f7a85f0a4f6835.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3396508-2a79dad4442a12a8.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3396508-f66320234c58e36e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3396508-30fee2b86137cf76.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-08-14T07:02:15.872Z">
+<meta property="og:updated_time" content="2018-08-14T07:04:05.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js学习：使用loopback做邮箱验证">
-<meta name="twitter:description" content="注册用户LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。 使用LoopBack用户模型注册用户创建新用户a. 通过添加模型实例创建用户（注册用户），电子邮件和密码是唯一必需的属性。 /server/boot/my-boot-script.js">
+<meta name="twitter:description" content="注册用户LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3396508-a0c383cf1f8ae6f6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -338,6 +338,7 @@
 
       
         <h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。</p>
+<a id="more"></a>
 <h3 id="使用LoopBack用户模型注册用户"><a href="#使用LoopBack用户模型注册用户" class="headerlink" title="使用LoopBack用户模型注册用户"></a>使用LoopBack用户模型注册用户</h3><h4 id="创建新用户"><a href="#创建新用户" class="headerlink" title="创建新用户"></a>创建新用户</h4><p>a. 通过添加模型实例创建用户（注册用户），电子邮件和密码是唯一必需的属性。</p>
 <p><strong>/server/boot/my-boot-script.js</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function(app) &#123;</span><br><span class="line">  var User = app.models.User;</span><br><span class="line">  User.create(&#123;email: &apos;foo@bar.com&apos;, password: &apos;bar&apos;&#125;, function(err, userInstance) &#123;</span><br><span class="line">    console.log(userInstance);</span><br><span class="line">  &#125;);</span><br><span class="line">  //...</span><br></pre></td></tr></table></figure>
