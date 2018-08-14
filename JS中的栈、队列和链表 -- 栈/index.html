@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript," />
+  <meta name="keywords" content="JavaScript,数据结构," />
 
 
 
@@ -80,17 +80,17 @@
 
 
 <meta name="description" content="JS中的栈、队列和链表 – 栈接着上一篇 《JS中的栈、队列和链表 – 队列》的讨论，今天我们将用JS的方式实现栈。 什么是栈？还是引用《JS高级编程》里的比喻来形容，栈就像叠盘子，一个一个往上叠，最后一个叠上去的，需要第一个拿出来。所以栈也是一个动态集合：新的元素被压入栈的最顶部；需要删除的元素将从栈的最顶部被弹出；删除的操作遵循LIFO（后进先出）的原则。">
-<meta name="keywords" content="JavaScript">
+<meta name="keywords" content="JavaScript,数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS中的栈、队列和链表 -- 栈">
+<meta property="og:title" content="JS中的数据结构：栈、队列和链表 -- 栈">
 <meta property="og:url" content="http://yoursite.com/JS中的栈、队列和链表 -- 栈/index.html">
-<meta property="og:site_name" content="BAIXS&#39;s BOOK">
+<meta property="og:site_name" content="百晓生的兵器谱">
 <meta property="og:description" content="JS中的栈、队列和链表 – 栈接着上一篇 《JS中的栈、队列和链表 – 队列》的讨论，今天我们将用JS的方式实现栈。 什么是栈？还是引用《JS高级编程》里的比喻来形容，栈就像叠盘子，一个一个往上叠，最后一个叠上去的，需要第一个拿出来。所以栈也是一个动态集合：新的元素被压入栈的最顶部；需要删除的元素将从栈的最顶部被弹出；删除的操作遵循LIFO（后进先出）的原则。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3396508-0556733169fb9601.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-08-14T10:31:44.352Z">
+<meta property="og:updated_time" content="2018-08-14T10:34:13.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS中的栈、队列和链表 -- 栈">
+<meta name="twitter:title" content="JS中的数据结构：栈、队列和链表 -- 栈">
 <meta name="twitter:description" content="JS中的栈、队列和链表 – 栈接着上一篇 《JS中的栈、队列和链表 – 队列》的讨论，今天我们将用JS的方式实现栈。 什么是栈？还是引用《JS高级编程》里的比喻来形容，栈就像叠盘子，一个一个往上叠，最后一个叠上去的，需要第一个拿出来。所以栈也是一个动态集合：新的元素被压入栈的最顶部；需要删除的元素将从栈的最顶部被弹出；删除的操作遵循LIFO（后进先出）的原则。">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3396508-0556733169fb9601.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>JS中的栈、队列和链表 -- 栈 | BAIXS's BOOK</title>
+  <title>JS中的数据结构：栈、队列和链表 -- 栈 | 百晓生的兵器谱</title>
   
 
 
@@ -158,12 +158,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">BAIXS's BOOK</span>
+        <span class="site-title">百晓生的兵器谱</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">百晓生的兵器谱</p>
+        <p class="site-subtitle">BAIXS's BOOK</p>
       
   </div>
 
@@ -274,7 +274,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BAIXS's BOOK">
+      <meta itemprop="name" content="百晓生的兵器谱">
     </span>
 
     
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JS中的栈、队列和链表 -- 栈</h1>
+          <h1 class="post-title" itemprop="name headline">JS中的数据结构：栈、队列和链表 -- 栈</h1>
         
 
         <div class="post-meta">
@@ -401,6 +401,8 @@
           
             <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
         </div>
       
 
@@ -412,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/JS中的栈、队列和链表--队列/" rel="next" title="JS中的栈、队列和链表 -- 队列">
-                <i class="fa fa-chevron-left"></i> JS中的栈、队列和链表 -- 队列
+              <a href="/JS中的栈、队列和链表--队列/" rel="next" title="JS中的数据结构：栈、队列和链表 -- 队列">
+                <i class="fa fa-chevron-left"></i> JS中的数据结构：栈、队列和链表 -- 队列
               </a>
             
           </div>
@@ -527,7 +529,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
