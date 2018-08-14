@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="野马也，尘埃也。">
+<meta name="description" content="假设一个函数，每隔一段随机时间后打印一个字符串  61234567891011121314151617function printString(string)&amp;#123;    setTimeout(      ()=&amp;gt;&amp;#123;        console.log(string)      &amp;#125;,      Math.floor(Math.random() * 100) +">
 <meta name="keywords" content="JavaScript,Async">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用Callbacks Promises 和 Async&#x2F;Await写一段异步代码">
 <meta property="og:url" content="http://zyqvizzz.github.io/asynchronous/index.html">
 <meta property="og:site_name" content="百晓生的兵器谱">
-<meta property="og:description" content="野马也，尘埃也。">
+<meta property="og:description" content="假设一个函数，每隔一段随机时间后打印一个字符串  61234567891011121314151617function printString(string)&amp;#123;    setTimeout(      ()=&amp;gt;&amp;#123;        console.log(string)      &amp;#125;,      Math.floor(Math.random() * 100) +">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-14T10:48:47.726Z">
+<meta property="og:updated_time" content="2018-08-14T12:56:09.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Callbacks Promises 和 Async&#x2F;Await写一段异步代码">
-<meta name="twitter:description" content="野马也，尘埃也。">
+<meta name="twitter:description" content="假设一个函数，每隔一段随机时间后打印一个字符串  61234567891011121314151617function printString(string)&amp;#123;    setTimeout(      ()=&amp;gt;&amp;#123;        console.log(string)      &amp;#125;,      Math.floor(Math.random() * 100) +">
 
 
 
@@ -390,7 +390,31 @@
       
 
       
-        
+        <blockquote>
+<p>假设一个函数，每隔一段随机时间后打印一个字符串</p>
+</blockquote>
+<figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function printString(string)&#123;</span><br><span class="line">    setTimeout(</span><br><span class="line">      ()=&gt;&#123;</span><br><span class="line">        console.log(string)</span><br><span class="line">      &#125;,</span><br><span class="line">      Math.floor(Math.random() * 100) + 1</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">//  现在，我们尝试着按顺序打印a b c</span><br><span class="line"></span><br><span class="line">function printAll()&#123;</span><br><span class="line">    printString(&quot;A&quot;);</span><br><span class="line">    printString(&quot;B&quot;);</span><br><span class="line">    printString(&quot;C&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printAll();</span><br></pre></td></tr></table></figure>
+<p>每次调用printAll时，你会注意到A B C以不同的随机顺序打印。这是因为这些函数是异步的，每个函数按顺序执行，但每个函数都独立于它自己的setTimeout。在开始之前，他们不会等待最后一个功能完成。</p>
+<p>现在，我们用callback回调修复它。</p>
+<h2 id="callback"><a href="#callback" class="headerlink" title="callback"></a>callback</h2><figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function printString(string, callback)&#123;</span><br><span class="line">  setTimeout(</span><br><span class="line">    ()=&gt;&#123;</span><br><span class="line">      console.log(string);</span><br><span class="line">      callback()</span><br><span class="line">    &#125;,</span><br><span class="line">    Math.floor(Math.random() * 100)+1</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">//  再次打印ABC</span><br><span class="line">function printAll()&#123;</span><br><span class="line">  printString(&quot;A&quot;, ()=&gt;&#123;</span><br><span class="line">    printString(&quot;B&quot;, ()=&gt;&#123;</span><br><span class="line">      printString(&quot;C&quot;, ()=&gt;&#123;&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">printAll();</span><br></pre></td></tr></table></figure>
+<p>代码虽然很丑陋，但是行之有效。现在，它们会按照预期打印了。</p>
+<p>回调是一个传递给另一个函数的函数，第一个函数完成，它将运行第二个函数。而回调的问题是它创建了一个名为回调地狱的东西。你将在函数内的函数嵌套函数，代码变得非常难以阅读。</p>
+<p>接下来，试试用Promise解决这个嵌套问题。</p>
+<h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  function printString(string)&#123;</span><br><span class="line">    return new Promise((resolve, reject)=&gt;&#123;</span><br><span class="line">      setTimeout(</span><br><span class="line">        ()=&gt;&#123;</span><br><span class="line">          console.log(string);</span><br><span class="line">          resolve();</span><br><span class="line">        &#125;,</span><br><span class="line">        Math.floor(Math.random()*100)+1</span><br><span class="line">      )</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">//  在这一步它们依然是相似的，整个函数包装在Promise中，而是调用resolve。</span><br><span class="line">//  该函数返回此Promise对象。</span><br><span class="line"></span><br><span class="line">  function printAll()&#123;</span><br><span class="line">    printString(&quot;A&quot;)</span><br><span class="line">      .then(()=&gt;&#123;</span><br><span class="line">        return printString(&quot;B&quot;);</span><br><span class="line">      &#125;)</span><br><span class="line">      .then(()=&gt;&#123;</span><br><span class="line">        return printString(&quot;C&quot;);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  printAll();</span><br></pre></td></tr></table></figure>
+<p>这叫Promise链，可以看到代码返回函数的结果（Promise），并将其发送到下一个函数。此时代码不需嵌套，但仍然很凌乱。</p>
+<p>最后，还有一招。await。</p>
+<p>await基本上是Promises的语法糖，它将使你的异步代码看起来更像是同步、过程代码更容易理解。</p>
+<figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//  printString无需更改</span><br><span class="line"></span><br><span class="line">async function printAll()&#123;</span><br><span class="line">    await printString(&quot;A&quot;);</span><br><span class="line">    await printString(&quot;B&quot;);</span><br><span class="line">    await printString(&quot;C&quot;);</span><br><span class="line">&#125;</span><br><span class="line">printAll()</span><br></pre></td></tr></table></figure>
+<p>现在看起来非常舒服了。</p>
+<p>包装函数printAll使用”async”关键字，这让我们的JavaScript知道我们正在使用async/await语法，如果你想使用await，async是个必要条件。这同时也意味着你不能从全局环境内使用await，它总是需要一个包装函数。</p>
+<p>但是，现在的printString函数不返回任何内容，每个都是独立的，如果你想获取第一个函数的输出，在第二个函数中用它做一些事，然后将它传给第三个函数。这时应该怎么办呢？</p>
+<p>让我们回到callback，再来一遍。</p>
+<h2 id="callback-1"><a href="#callback-1" class="headerlink" title="callback"></a>callback</h2><figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function addString(previous, current, callback)&#123;</span><br><span class="line">   setTimeout(</span><br><span class="line">     ()=&gt;&#123;</span><br><span class="line">       callback(previous + &apos; &apos; + current)</span><br><span class="line">     &#125;,</span><br><span class="line">     Math.floor(Math.random() * 100) + 1</span><br><span class="line">   )</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> function addAll()&#123;</span><br><span class="line">   addString(&apos;&apos;, &apos;A&apos;, result =&gt; &#123;</span><br><span class="line">     addString(result, &apos;B&apos;, result =&gt; &#123;</span><br><span class="line">       addString(result, &apos;C&apos;, result =&gt; &#123;</span><br><span class="line">         console.log(result);</span><br><span class="line">       &#125;)</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line"> addAll();</span><br></pre></td></tr></table></figure>
+<h2 id="Promises-1"><a href="#Promises-1" class="headerlink" title="Promises"></a>Promises</h2><figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function addString(previous, current)&#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      setTimeout(</span><br><span class="line">        () =&gt; &#123;</span><br><span class="line">          resolve(previous + &apos; &apos; + current)</span><br><span class="line">        &#125;,</span><br><span class="line">        Math.floor(Math.random() * 100) + 1</span><br><span class="line">      )</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function addAll()&#123;</span><br><span class="line">    addString(&apos;&apos;, &apos;A&apos;)</span><br><span class="line">      .then(result =&gt; &#123;</span><br><span class="line">        return addString(result, &apos;B&apos;)</span><br><span class="line">      &#125;)</span><br><span class="line">      .then(result =&gt; &#123;</span><br><span class="line">        return addString(result, &apos;C&apos;)</span><br><span class="line">      &#125;)</span><br><span class="line">      .then(result =&gt; &#123;</span><br><span class="line">        console.log(result)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  addAll();</span><br></pre></td></tr></table></figure>
+<p>Promise的可读性更强了，但如果继续向链中增加内容，依然会有很多括号。</p>
+<h2 id="Await"><a href="#Await" class="headerlink" title="Await"></a>Await</h2><figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//  addString函数和Promises相同</span><br><span class="line">  function addString(previous, current)&#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      setTimeout(</span><br><span class="line">        () =&gt; &#123;</span><br><span class="line">          resolve(previous + &apos; &apos; + current)</span><br><span class="line">        &#125;,</span><br><span class="line">        Math.floor(Math.random() * 100) + 1</span><br><span class="line">      )</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  async function addAll()&#123;</span><br><span class="line">    let toPrint = &apos;&apos;;</span><br><span class="line">    toPrint = await addString(toPrint, &apos;A&apos;);</span><br><span class="line">    toPrint = await addString(toPrint, &apos;B&apos;);</span><br><span class="line">    toPrint = await addString(toPrint, &apos;C&apos;);</span><br><span class="line">    console.log(toPrint);</span><br><span class="line">  &#125;</span><br><span class="line">  addAll()</span><br></pre></td></tr></table></figure>
+<p>完美。</p>
+
       
     </div>
     
@@ -482,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -547,6 +580,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#callback"><span class="nav-number">1.</span> <span class="nav-text">callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promises"><span class="nav-number">2.</span> <span class="nav-text">Promises</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#callback-1"><span class="nav-number">3.</span> <span class="nav-text">callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promises-1"><span class="nav-number">4.</span> <span class="nav-text">Promises</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Await"><span class="nav-number">5.</span> <span class="nav-text">Await</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
