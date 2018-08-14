@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-14T07:14:20.458Z</updated>
+  <updated>2018-08-14T10:48:47.726Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用Callbacks Promises 和 Async/Await写一段异步代码</title>
+    <link href="http://yoursite.com/asynchronous/"/>
+    <id>http://yoursite.com/asynchronous/</id>
+    <published>2018-08-12T07:31:09.000Z</published>
+    <updated>2018-08-14T10:48:47.726Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Web开发" scheme="http://yoursite.com/categories/Web%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="Async" scheme="http://yoursite.com/tags/Async/"/>
+    
+  </entry>
   
   <entry>
     <title>JS中函数与对象之间的关系</title>
