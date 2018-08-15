@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -87,13 +87,14 @@
 <meta property="og:site_name" content="百晓生的兵器谱">
 <meta property="og:description" content="JS中的数据结构：栈、队列和链表 – 栈 JS中的数据结构：栈、队列和链表 – 队列  我们之前讨论了队列和栈，这两种类型都很简单，易于实现和使用。但实际上，没有任何一种数据结构能够适应所有的情况。在某些情况下，队列和栈被证明效率不高，我们还需要更高级类型的帮助。 链表（Linked List）就是其中之一。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/600/1*UTXG-Oy1JEI5t9Wp4H0ALw.png">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/600/1*lctrvTJ7NzjVc-hxlL_dyA.png">
-<meta property="og:updated_time" content="2018-08-15T03:12:14.758Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3396508-f76f40c0e001de1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3396508-1123844476e050dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3396508-88e7a44064983123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-08-15T05:08:47.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的数据结构：栈、队列和链表 -- 链表">
 <meta name="twitter:description" content="JS中的数据结构：栈、队列和链表 – 栈 JS中的数据结构：栈、队列和链表 – 队列  我们之前讨论了队列和栈，这两种类型都很简单，易于实现和使用。但实际上，没有任何一种数据结构能够适应所有的情况。在某些情况下，队列和栈被证明效率不高，我们还需要更高级类型的帮助。 链表（Linked List）就是其中之一。">
-<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/600/1*UTXG-Oy1JEI5t9Wp4H0ALw.png">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3396508-f76f40c0e001de1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -408,17 +409,18 @@
 <blockquote>
 <p>链表是所有元素按线性顺序排列的结构，由存储在每个元素中的指针所确定。</p>
 </blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/3396508-f76f40c0e001de1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="链表"></p>
 <p>与数组不同，链表是动态集合的灵活表示，链表中的元素不需要在同一内存块中分配（如：在同一个数组中），但可以用指针连接起来，形成一个list。</p>
 <p>继续手机的例子：<strong>A和B是两个独立的个体，但当A把B的手机号码保存在通讯录之后，A和B就产生了关系，也就是说，A和B在此时形成了链表；</strong>接着，B保存C的号码，C保存了D的号码······</p>
 <p>链表有几种类型，在本文范围里，我们只提到两种主要类型，单向链表和双向链表。</p>
 <ul>
 <li><strong>单向链表</strong>：最简单的链接结构。每个节点中都保存了指向下一个节点的指针，其中head指针将指向第一个成为<strong>头节点</strong>，最后一个节点的指针则指向null作为结束。</li>
 </ul>
-<p><img src="https://cdn-images-1.medium.com/max/600/1*UTXG-Oy1JEI5t9Wp4H0ALw.png" alt="单向链表"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3396508-1123844476e050dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="单向链表"></p>
 <ul>
 <li><strong>双向链表</strong>：类似于单向链表，但除了指向下一个节点的指针外，每个节点中还保存了指向前一个节点的指针。这同样可以用手机的例子来解释：A保存了B的号码，B保存了C的号码，也保存了A的号码，以此类推。和单向链表相同的是，双向链表也有一个指向头节点的head指针，最后一个节点的指针也指向null。与此同时，双向链表由于是循环的，所以它的头节点中也会保存一个指向null的指针。</li>
 </ul>
-<p><img src="https://cdn-images-1.medium.com/max/600/1*lctrvTJ7NzjVc-hxlL_dyA.png" alt="双向链表"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3396508-88e7a44064983123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="双向链表"></p>
 <h2 id="链表支持哪些操作？"><a href="#链表支持哪些操作？" class="headerlink" title="链表支持哪些操作？"></a>链表支持哪些操作？</h2><p>一般来说，每个链表结构都支持三个主要的基本操作：</p>
 <ul>
 <li><strong>Search</strong>：根据值或位置搜索一个节点。</li>
