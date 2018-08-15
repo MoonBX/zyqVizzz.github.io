@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="假面生死簿," />
+  <meta name="keywords" content="JavaScript,数据结构," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="书三写，鱼成书，帝成鲁。作：苏住  壹元康年间，一桩坊间流言在洛阳城里悄然流传。说陆公子身怀绝技，每至夜冷灯寒，便化身为江洋大盗，在城中兴风作浪。初次听说这个故事的人多半有两种反应，一些人不知道陆公子是谁，也从没在以往的奇闻传说里见过他的影子，他们被这个陌生的人物吸引，完全归功于说书客的妙笔生花；而另一小撮人，他们知道陆公子，甚至有人自称是他的朋友，这些人对故事将信将疑。在他们眼里，陆公子并不是">
-<meta name="keywords" content="假面生死簿">
+<meta name="description" content="JS中的数据结构：栈、队列和链表 – 栈 JS中的数据结构：栈、队列和链表 – 队列  我们之前讨论了队列和栈，这两种类型都很简单，易于实现和使用。但实际上，没有任何一种数据结构能够适应所有的情况。在某些情况下，队列和栈被证明效率不高，我们还需要更高级类型的帮助。 链表（Linked List）就是其中之一。">
+<meta name="keywords" content="JavaScript,数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第零章 武库大火事件">
-<meta property="og:url" content="http://zyqvizzz.github.io/武库大火事件00/index.html">
+<meta property="og:title" content="JS中的数据结构：栈、队列和链表 -- 链表">
+<meta property="og:url" content="http://zyqvizzz.github.io/JS中的数据结构:栈、队列和链表 -- 链表/index.html">
 <meta property="og:site_name" content="百晓生的兵器谱">
-<meta property="og:description" content="书三写，鱼成书，帝成鲁。作：苏住  壹元康年间，一桩坊间流言在洛阳城里悄然流传。说陆公子身怀绝技，每至夜冷灯寒，便化身为江洋大盗，在城中兴风作浪。初次听说这个故事的人多半有两种反应，一些人不知道陆公子是谁，也从没在以往的奇闻传说里见过他的影子，他们被这个陌生的人物吸引，完全归功于说书客的妙笔生花；而另一小撮人，他们知道陆公子，甚至有人自称是他的朋友，这些人对故事将信将疑。在他们眼里，陆公子并不是">
+<meta property="og:description" content="JS中的数据结构：栈、队列和链表 – 栈 JS中的数据结构：栈、队列和链表 – 队列  我们之前讨论了队列和栈，这两种类型都很简单，易于实现和使用。但实际上，没有任何一种数据结构能够适应所有的情况。在某些情况下，队列和栈被证明效率不高，我们还需要更高级类型的帮助。 链表（Linked List）就是其中之一。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-14T08:04:59.907Z">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/600/1*UTXG-Oy1JEI5t9Wp4H0ALw.png">
+<meta property="og:updated_time" content="2018-08-15T03:00:28.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第零章 武库大火事件">
-<meta name="twitter:description" content="书三写，鱼成书，帝成鲁。作：苏住  壹元康年间，一桩坊间流言在洛阳城里悄然流传。说陆公子身怀绝技，每至夜冷灯寒，便化身为江洋大盗，在城中兴风作浪。初次听说这个故事的人多半有两种反应，一些人不知道陆公子是谁，也从没在以往的奇闻传说里见过他的影子，他们被这个陌生的人物吸引，完全归功于说书客的妙笔生花；而另一小撮人，他们知道陆公子，甚至有人自称是他的朋友，这些人对故事将信将疑。在他们眼里，陆公子并不是">
+<meta name="twitter:title" content="JS中的数据结构：栈、队列和链表 -- 链表">
+<meta name="twitter:description" content="JS中的数据结构：栈、队列和链表 – 栈 JS中的数据结构：栈、队列和链表 – 队列  我们之前讨论了队列和栈，这两种类型都很简单，易于实现和使用。但实际上，没有任何一种数据结构能够适应所有的情况。在某些情况下，队列和栈被证明效率不高，我们还需要更高级类型的帮助。 链表（Linked List）就是其中之一。">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/600/1*UTXG-Oy1JEI5t9Wp4H0ALw.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://zyqvizzz.github.io/武库大火事件00/"/>
+  <link rel="canonical" href="http://zyqvizzz.github.io/JS中的数据结构:栈、队列和链表 -- 链表/"/>
 
 
 
 
 
-  <title>第零章 武库大火事件 | 百晓生的兵器谱</title>
+  <title>JS中的数据结构：栈、队列和链表 -- 链表 | 百晓生的兵器谱</title>
   
 
 
@@ -301,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/武库大火事件00/">
+    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/JS中的数据结构:栈、队列和链表 -- 链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="断桥百晓生">
@@ -318,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第零章 武库大火事件</h1>
+          <h1 class="post-title" itemprop="name headline">JS中的数据结构：栈、队列和链表 -- 链表</h1>
         
 
         <div class="post-meta">
@@ -330,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T14:18:09+08:00">
-                2018-06-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T18:31:09+08:00">
+                2018-07-16
               </time>
             
 
@@ -353,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小说/" itemprop="url" rel="index">
-                    <span itemprop="name">小说</span>
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
                   </a>
                 </span>
 
@@ -390,16 +392,31 @@
       
 
       
-        <blockquote>
-<p>书三写，鱼成书，帝成鲁。<br>作：苏住</p>
-</blockquote>
-<h3 id="壹"><a href="#壹" class="headerlink" title="壹"></a>壹</h3><p>元康年间，一桩坊间流言在洛阳城里悄然流传。说陆公子身怀绝技，每至夜冷灯寒，便化身为江洋大盗，在城中兴风作浪。初次听说这个故事的人多半有两种反应，一些人不知道陆公子是谁，也从没在以往的奇闻传说里见过他的影子，他们被这个陌生的人物吸引，完全归功于说书客的妙笔生花；而另一小撮人，他们知道陆公子，甚至有人自称是他的朋友，这些人对故事将信将疑。在他们眼里，陆公子并不是神秘的江湖侠客，只是个无甚特别的平头百姓，住在洛阳城内某块不甚平整的泥土地里。这里以前没有过传说，以后也绝不会有。</p>
+        <ul>
+<li><a href="https://zyqvizzz.github.io/JS%E4%B8%AD%E7%9A%84%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E5%92%8C%E9%93%BE%E8%A1%A8%20--%20%E6%A0%88/">JS中的数据结构：栈、队列和链表 – 栈</a></li>
+<li><a href="https://zyqvizzz.github.io/JS%E4%B8%AD%E7%9A%84%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E5%92%8C%E9%93%BE%E8%A1%A8--%E9%98%9F%E5%88%97/">JS中的数据结构：栈、队列和链表 – 队列</a></li>
+</ul>
+<p>我们之前讨论了队列和栈，这两种类型都很简单，易于实现和使用。但实际上，没有任何一种数据结构能够适应所有的情况。在某些情况下，队列和栈被证明效率不高，我们还需要更高级类型的帮助。</p>
+<p>链表（Linked List）就是其中之一。</p>
 <a id="more"></a>
-<p>在造访陆公子之前，我已在邻里们的耳传口授中对他的性格模样有了一些粗浅的感观。大概是这样一个人：一介书生，白净面皮，偏爱素色衣衫，样式多为腰窄袖宽的吴服旧制；有服散习惯，洛阳城内买不到他的方子，所以有专门为他供货的外地客商；自己酿酒，酒后行文，但未听说有公开发表于世的文章；不接受文人圈子的邀请，不参与任何形式的清议；起居不定，断绝交游，只有在节庆期间才偶尔现身于坊外的花灯庙会上，照旧孤身一人；更多能见到他的机会是找他写信–陆公子每逢初一，初十，二十这三日执笔，为邻居们代写家书，并象征性的收取少量钱帛。因此，尽管人们对他的生平知之甚少，他亦极少与人主动往来，但这丝毫不能抵消他在吴人坊里所获得的绝好名声。</p>
-<p>“吴人坊，乃是洛阳城四夷坊之一，地处城东一隅，距离马市不远，从洛水桥出发步行赶往此地，脚程约半个时辰。三年前，也就是陆公子来到洛阳的第二年，他一头扎进吴人坊，从此与外界音信相绝。”</p>
-<p>说书客的情报非常准确，我依照故事中的描述，很快便在这座此前闻所未闻的吴人坊中寻找到了陆公子的府邸——说是府邸，未免有些夸大之嫌，因为此时我不知该以陆公子的身份作为标准，还是该以眼前的客观事实作为依据——就暂且称之为屋邸吧。</p>
-<p>他的屋邸很好认，是吴人坊里少数顶上有瓦的房子。单进单出，从外部的墙围构造推测，里面没有左右厢房，只有一间朝南的堂屋和一座相对宽敞的院落，堂屋左右是卧室和厨房；似乎唯独在门上多花了心思：院门两旁的一小段护墙高出围墙整体约五尺，向里斜收，和院门连接成为一个颇有礼让的梯形，这大概是为了让门檐和台阶不占用额外道路而特意做出的设计；门檐上没有多余的装饰，四平八稳，朴实而庄重，门前设有两级台阶，阶上间杂着几株错落有致的绣墩草，和坊里其他的民房相比，这里始终透着些文气，但又并不突兀。</p>
-<p>不难发现，陆公子的住宅有一种均衡克制的气氛，甚至在规格上暗降一等，而之所以这么做，多半是出于他的友善性格，他不希望邻居们因为他的存在而感到不安。这是一种君子风度。所以，为了还以同样的礼数，在叩响陆家的院门之前，我在头脑中对陆公子的生平做了一次额外的整理：</p>
+<h2 id="什么是链表？"><a href="#什么是链表？" class="headerlink" title="什么是链表？"></a>什么是链表？</h2><p>首先，想学习链表，我们需要弄懂一个概念。指针。指针在很多语言中（C/C++）都是非常重要的概念。那什么是指针呢？</p>
+<blockquote>
+<p>指针表示的是内存中某个位置的地址。换句话说，<strong>指针是一个变量</strong>，通过它可以修改/读取另一个变量。</p>
+</blockquote>
+<p>举一个例子：手机号码。我们可以认为它指向的是其所有者，手机的主人可以去世界上的任何地方，但是手机总是指向他。</p>
+<blockquote>
+<p>链表是所有元素按线性顺序排列的结构，由存储在每个元素中的指针所确定。</p>
+</blockquote>
+<p>与数组不同，链表是动态集合的灵活表示，链表中的元素不需要在同一内存块中分配（如：在同一个数组中），但可以用指针连接起来，形成一个list。</p>
+<p>继续手机的例子：<strong>A和B是两个独立的个体，但当A把B的手机号码保存在通讯录之后，A和B就产生了关系，也就是说，A和B在此时形成了链表；</strong>接着，B保存C的号码，C保存了D的号码······</p>
+<p>链表有几种类型，在本文范围里，我们只提到两种主要类型，单向链表和双向链表。</p>
+<ul>
+<li><strong>单向链表</strong>：最简单的链接结构。每个节点中都保存了指向下一个节点的指针，其中head指针将指向第一个成为<strong>头节点</strong>，最后一个节点的指针则指向null作为结束。</li>
+</ul>
+<p><img src="https://cdn-images-1.medium.com/max/600/1*UTXG-Oy1JEI5t9Wp4H0ALw.png" alt="单向链表"></p>
+<ul>
+<li><strong>双向链表</strong>：类似于单向链表，但除了指向下一个节点的指针外，每个节点中还保存了指向前一个节点的指针。这同样可以用手机的例子来解释：A保存了B的号码，B保存了C的号码，也保存了A的号码，以此类推。和单向链表相同的是，双向链表也有一个指向头节点的head指针，最后一个节点的指针也指向null。与此同时，双向链表由于是循环的，所以它的头节点中也会保存一个指向null的指针。</li>
+</ul>
 
       
     </div>
@@ -417,7 +434,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/假面生死簿/" rel="tag"># 假面生死簿</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
@@ -430,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Node.js学习：使用loopback做邮箱验证/" rel="next" title="Node.js学习：使用loopback做邮箱验证">
-                <i class="fa fa-chevron-left"></i> Node.js学习：使用loopback做邮箱验证
+              <a href="/JS中的栈、队列和链表 -- 栈/" rel="next" title="JS中的数据结构：栈、队列和链表 -- 栈">
+                <i class="fa fa-chevron-left"></i> JS中的数据结构：栈、队列和链表 -- 栈
               </a>
             
           </div>
@@ -440,8 +459,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/JS中的栈、队列和链表--队列/" rel="prev" title="JS中的数据结构：栈、队列和链表 -- 队列">
-                JS中的数据结构：栈、队列和链表 -- 队列 <i class="fa fa-chevron-right"></i>
+              <a href="/JS中函数与对象之间的关系/" rel="prev" title="JS中函数与对象之间的关系">
+                JS中函数与对象之间的关系 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -578,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#壹"><span class="nav-number">1.</span> <span class="nav-text">壹</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是链表？"><span class="nav-number">1.</span> <span class="nav-text">什么是链表？</span></a></li></ol></div>
             
 
           </div>
