@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ECMAScript 6,JavaScript,数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Set和Array是什么？绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？  数组对象是使用单独的变量名在内存中存储的一系列的值。  例如：[1,2,3,1] 那什么是set呢？  Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配  例如：{1，2，3} 根据定义，Array和Set在技术上是两种不同的概">
+<meta name="keywords" content="ECMAScript 6,JavaScript,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6：Set和Array">
+<meta property="og:url" content="http://zyqvizzz.github.io/ES6 SetvsArray/index.html">
+<meta property="og:site_name" content="百晓生的兵器谱">
+<meta property="og:description" content="Set和Array是什么？绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？  数组对象是使用单独的变量名在内存中存储的一系列的值。  例如：[1,2,3,1] 那什么是set呢？  Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配  例如：{1，2，3} 根据定义，Array和Set在技术上是两种不同的概">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-20T05:58:19.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6：Set和Array">
+<meta name="twitter:description" content="Set和Array是什么？绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？  数组对象是使用单独的变量名在内存中存储的一系列的值。  例如：[1,2,3,1] 那什么是set呢？  Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配  例如：{1，2，3} 根据定义，Array和Set在技术上是两种不同的概">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'UQ916D0T6S',
+      apiKey: 'c2eecdbced58726dccb6cad90d7b6ab4',
+      indexName: 'BAIXS',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"请输入关键字","hits_empty":"未收录: ${query}","hits_stats":"${hits}条结果，用时${time} 毫秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zyqvizzz.github.io/ES6 SetvsArray/"/>
+
+
+
+
+
+  <title>ES6：Set和Array | 百晓生的兵器谱</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">百晓生的兵器谱</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">BAIXS's BOOK</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-noval">
+          <a href="/noval" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/ES6 SetvsArray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="断桥百晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/012.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="百晓生的兵器谱">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6：Set和Array</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T18:31:09+08:00">
+                2018-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Set和Array是什么？"><a href="#Set和Array是什么？" class="headerlink" title="Set和Array是什么？"></a>Set和Array是什么？</h2><p>绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？</p>
+<blockquote>
+<p>数组对象是使用单独的变量名在内存中存储的一系列的值。</p>
+</blockquote>
+<p>例如：<code>[1,2,3,1]</code></p>
+<p>那什么是set呢？</p>
+<blockquote>
+<p>Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配</p>
+</blockquote>
+<p>例如：<code>{1，2，3}</code></p>
+<p>根据定义，Array和Set在技术上是两种不同的概念。</p>
+<a id="more"></a>
+<p>在上述的例子中，你也许能发现它们之间的不同之处，虽然不是很明显，但你还是能够发现，Set里的元素都是不重复的，而Array中的元素可以重复。</p>
+<p>另外，Array被定义为“索引集合(indexed collection)”类型的数据结构，Set则被定义为“键值集合(keyed collection)”。顾名思义，索引集合按照索引排序，键值集合是使用key并按照顺序迭代的元素集合。</p>
+<p>我们这篇文章的目的是讨论如何在Array和Set中做出选择，所以下一步是用JS来构建它们。</p>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><h3 id="数组-Array"><a href="#数组-Array" class="headerlink" title="数组(Array)"></a>数组(Array)</h3><p>在JS里，数组是个非常随性且直接的东西。</p>
+<p>我们可以这样构建一个数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let arr = [1,2,3];</span><br></pre></td></tr></table></figure>
+<p>或者使用内置的构造函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = new Array();</span><br><span class="line">var arr = new Array(1,2,3);</span><br></pre></td></tr></table></figure>
+<p>也可以更特殊一点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr = Array.from(&quot;123&quot;); //[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>tip</strong>：建议不要使用new Array()这种方式，因为：</p>
+<ul>
+<li>它的执行速度比普通的[]字面量慢得多。</li>
+<li>[]会节省你的打字时间。</li>
+<li>new Array()可能会让你碰到一些经典的问题。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var arr1 = new Array(10);</span><br><span class="line">// arr1[0] = undefined;</span><br><span class="line">// arr1.length = 10;</span><br><span class="line"></span><br><span class="line">var arr2 = [10];</span><br><span class="line">// arr2[0] = 10;</span><br><span class="line">// arr.length = 1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var arr3 = new Array(1,2,3);</span><br><span class="line">// [1,2,3]</span><br><span class="line"></span><br><span class="line">var arr4 = [1,2,3];</span><br><span class="line">// [1,2,3]</span><br><span class="line"></span><br><span class="line">// 看出区别了吗？</span><br></pre></td></tr></table></figure>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set拥有内置的构造函数，它不像Array一样可以简写为[]。</p>
+<blockquote>
+<p>Set([iterable])</p>
+</blockquote>
+<p>为了创建一个新的集合，我们需要使用新的语法，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var emptySet = new Set();</span><br><span class="line">var exampleSet = new Set([1,2,3]);</span><br><span class="line"></span><br><span class="line">// new Set(1); </span><br><span class="line">// 这种写法是绝对错误的</span><br></pre></td></tr></table></figure>
+<p>Set接收数组作为其输入参数，并将分别创建set对象。但它只能包含该数组中的不同元素，也就是说不能重复。</p>
+<p>当然，我们也可以使用Array.from()方法将一个集合转换为数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var set = new Set([1,2,3]); // &#123;1,2,3&#125;</span><br><span class="line"></span><br><span class="line">var arr = Array.from(set); // [1,2,3]</span><br></pre></td></tr></table></figure>
+<p>好了，既然我们知道如何创建它们，那么如何实现它们的功能呢？现在我们将对Array/Set提供的基本方法进行一些比较：</p>
+<h2 id="定位元素-访问元素"><a href="#定位元素-访问元素" class="headerlink" title="定位元素/访问元素"></a>定位元素/访问元素</h2><ul>
+<li>首先，Set不支持像Array一样通过索引访问元素，这表示：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(set[0]); // undefined</span><br><span class="line">console.log(arr[0]); // 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>更重要的是，由于数组数据存储在连续的存储器中，因此CPU将能够对数据进行更快的读取。因此，如果与其他的抽象数据类型相比，迭代Array中的元素会更快，更高效。</p>
+</li>
+<li><p>Set.prototype.has 和 Array.prototype.indexOf</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">console.log(set.has(0)); // false</span><br><span class="line">console.log(arr.indexOf(0)); // -1</span><br><span class="line"></span><br><span class="line">console.log(set.has(1)); // true</span><br><span class="line">console.log(arr.indexOf(1)); // 0</span><br></pre></td></tr></table></figure>
+<p>这里，arr要比set更麻烦些，因为你通常需要对arr做一次检查：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var isExist = arr.indexOf(1) !== -1;</span><br></pre></td></tr></table></figure>
+<p><strong>tip</strong>：ES6中有一个Array.prototype.includes()方法，它的作用类似于has()。</p>
+<h2 id="插入-新增元素"><a href="#插入-新增元素" class="headerlink" title="插入/新增元素"></a>插入/新增元素</h2><p><strong>Array</strong>：</p>
+<ul>
+<li>Array.prototype.push()：将元素添加到数组的末尾；时间复杂度O(1)；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.push(4); // [1,2,3,4]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Array.prototype.unshift()：将元素添加到数组的开头；时间复杂度O(n)；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.unshift(3);</span><br><span class="line">arr.unshift(5,6);</span><br></pre></td></tr></table></figure>
+<p><strong>Set</strong></p>
+<ul>
+<li>在Set中，只有一种方法可以添加新元素，Set.prototype.add()。由于Set必须使它的set成员保持“独一无二”的属性，所以在每次调用add()时，Set需要检查所有成员以确保在继续之前没有重复。通常，add()方法将耗费O(n)的运行时间，但由于使用了hash table的实现方法，实际上Set中的add()只需要时间O(1)。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set.add(3); //&#123;1,2,3&#125; </span><br><span class="line">set.add(4); //&#123;1,2,3,4&#125;</span><br></pre></td></tr></table></figure>
+<p>因此，这里Set在添加元素时与Array几乎相同。</p>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><p><strong>Array</strong></p>
+<p>使Array如此受欢迎的原因之一是它提供了许多不同的方法来删除元素，例如：</p>
+<ul>
+<li>Pop()：删除最后一个元素，时间复杂度为O(1)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6];</span><br><span class="line">arr.pop(); // return 6, [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Shift()：删除第一个元素，时间复杂度为O(n)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6];</span><br><span class="line">arr.shift(); // return 1, [2,3,4,5,6]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Splice(index, deleteCount)：删除从index到deleteCount区间的元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6];</span><br><span class="line">arr.splice(0,2); // return [1,2], arr = [3,4,5,6]</span><br></pre></td></tr></table></figure>
+<p><strong>Set</strong></p>
+<p>与此同时，在Set里，我们会用：</p>
+<ul>
+<li>Delete(element)：删除一个Set中特定的元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.delete(4) // &#123;1,2,3,5,6&#125;，4是元素，而不是索引</span><br></pre></td></tr></table></figure>
+<ul>
+<li>clear()：删除Set中的所有元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.clear() // &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>和Set相比，Array为我们提供了更多的原生功能（reduce()，reverse()，sort()等…），而Set目前只具有上面提到的基本功能。那么我们为什么会更喜欢Set呢？</p>
+<h2 id="Set和Array的适用场合？"><a href="#Set和Array的适用场合？" class="headerlink" title="Set和Array的适用场合？"></a>Set和Array的适用场合？</h2><ul>
+<li>首先，Set和Array是不同那个的，它诞生的目的并不是要取代Array，而是为了弥补Array的不足。由于Set只包含不同的元素，也就是说，它拥有一项自动去重的功能，这会在一定程度上减轻我们的工作。</li>
+<li>Set又叫集合，和我们在数学课里学到的集合是同一个概念，它提供了内置的交集（intersect），并集（union）和差集（difference）等方法。</li>
+<li>数组适用于这种情况：我们希望保持元素的排序以便于快速访问，或者进行大量修改（删除或新增元素），或者任何需要对元素进行直接的索引访问的操作场景。</li>
+</ul>
+<p>总而言之，我认为Set的关键点在于“不同”，以及需要整合不同的数据集的时候，它才是更加高效的。在此情况之外，Array通常是更好的选择。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ECMAScript-6/" rel="tag"># ECMAScript 6</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/开发一个基于Nas星云链的Web APP/" rel="next" title="开发一款基于Nas星云链的Web APP">
+                <i class="fa fa-chevron-left"></i> 开发一款基于Nas星云链的Web APP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/武库大火事件00/" rel="prev" title="第零章 武库大火事件">
+                第零章 武库大火事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/012.jpeg"
+                alt="断桥百晓生" />
+            
+              <p class="site-author-name" itemprop="name">断桥百晓生</p>
+              <p class="site-description motion-element" itemprop="description">野马也，尘埃也。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set和Array是什么？"><span class="nav-number">1.</span> <span class="nav-text">Set和Array是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建"><span class="nav-number">2.</span> <span class="nav-text">构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组-Array"><span class="nav-number">2.1.</span> <span class="nav-text">数组(Array)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">2.2.</span> <span class="nav-text">Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定位元素-访问元素"><span class="nav-number">3.</span> <span class="nav-text">定位元素/访问元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入-新增元素"><span class="nav-number">4.</span> <span class="nav-text">插入/新增元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除元素"><span class="nav-number">5.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set和Array的适用场合？"><span class="nav-number">6.</span> <span class="nav-text">Set和Array的适用场合？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">断桥百晓生</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

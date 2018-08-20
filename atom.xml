@@ -176,6 +176,66 @@
   </entry>
   
   <entry>
+    <title>ES6：Set和Array</title>
+    <link href="http://zyqvizzz.github.io/ES6%20SetvsArray/"/>
+    <id>http://zyqvizzz.github.io/ES6 SetvsArray/</id>
+    <published>2018-05-08T10:31:09.000Z</published>
+    <updated>2018-08-20T05:58:19.999Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Set和Array是什么？"><a href="#Set和Array是什么？" class="headerlink" title="Set和Array是什么？"></a>Set和Array是什么？</h2><p>绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？</p><blockquote><p>数组对象是使用单独的变量名在内存中存储的一系列的值。</p></blockquote><p>例如：<code>[1,2,3,1]</code></p><p>那什么是set呢？</p><blockquote><p>Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配</p></blockquote><p>例如：<code>{1，2，3}</code></p><p>根据定义，Array和Set在技术上是两种不同的概念。</p><a id="more"></a><p>在上述的例子中，你也许能发现它们之间的不同之处，虽然不是很明显，但你还是能够发现，Set里的元素都是不重复的，而Array中的元素可以重复。</p><p>另外，Array被定义为“索引集合(indexed collection)”类型的数据结构，Set则被定义为“键值集合(keyed collection)”。顾名思义，索引集合按照索引排序，键值集合是使用key并按照顺序迭代的元素集合。</p><p>我们这篇文章的目的是讨论如何在Array和Set中做出选择，所以下一步是用JS来构建它们。</p><h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><h3 id="数组-Array"><a href="#数组-Array" class="headerlink" title="数组(Array)"></a>数组(Array)</h3><p>在JS里，数组是个非常随性且直接的东西。</p><p>我们可以这样构建一个数组：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">let arr = [1,2,3];</span><br></pre></td></tr></table></figure><p>或者使用内置的构造函数：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = new Array();</span><br><span class="line">var arr = new Array(1,2,3);</span><br></pre></td></tr></table></figure><p>也可以更特殊一点：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr = Array.from(&quot;123&quot;); //[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]</span><br></pre></td></tr></table></figure><p><strong>tip</strong>：建议不要使用new Array()这种方式，因为：</p><ul><li>它的执行速度比普通的[]字面量慢得多。</li><li>[]会节省你的打字时间。</li><li>new Array()可能会让你碰到一些经典的问题。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var arr1 = new Array(10);</span><br><span class="line">// arr1[0] = undefined;</span><br><span class="line">// arr1.length = 10;</span><br><span class="line"></span><br><span class="line">var arr2 = [10];</span><br><span class="line">// arr2[0] = 10;</span><br><span class="line">// arr.length = 1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var arr3 = new Array(1,2,3);</span><br><span class="line">// [1,2,3]</span><br><span class="line"></span><br><span class="line">var arr4 = [1,2,3];</span><br><span class="line">// [1,2,3]</span><br><span class="line"></span><br><span class="line">// 看出区别了吗？</span><br></pre></td></tr></table></figure><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set拥有内置的构造函数，它不像Array一样可以简写为[]。</p><blockquote><p>Set([iterable])</p></blockquote><p>为了创建一个新的集合，我们需要使用新的语法，例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var emptySet = new Set();</span><br><span class="line">var exampleSet = new Set([1,2,3]);</span><br><span class="line"></span><br><span class="line">// new Set(1); </span><br><span class="line">// 这种写法是绝对错误的</span><br></pre></td></tr></table></figure><p>Set接收数组作为其输入参数，并将分别创建set对象。但它只能包含该数组中的不同元素，也就是说不能重复。</p><p>当然，我们也可以使用Array.from()方法将一个集合转换为数组。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var set = new Set([1,2,3]); // &#123;1,2,3&#125;</span><br><span class="line"></span><br><span class="line">var arr = Array.from(set); // [1,2,3]</span><br></pre></td></tr></table></figure><p>好了，既然我们知道如何创建它们，那么如何实现它们的功能呢？现在我们将对Array/Set提供的基本方法进行一些比较：</p><h2 id="定位元素-访问元素"><a href="#定位元素-访问元素" class="headerlink" title="定位元素/访问元素"></a>定位元素/访问元素</h2><ul><li>首先，Set不支持像Array一样通过索引访问元素，这表示：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(set[0]); // undefined</span><br><span class="line">console.log(arr[0]); // 1</span><br></pre></td></tr></table></figure><ul><li><p>更重要的是，由于数组数据存储在连续的存储器中，因此CPU将能够对数据进行更快的读取。因此，如果与其他的抽象数据类型相比，迭代Array中的元素会更快，更高效。</p></li><li><p>Set.prototype.has 和 Array.prototype.indexOf</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">console.log(set.has(0)); // false</span><br><span class="line">console.log(arr.indexOf(0)); // -1</span><br><span class="line"></span><br><span class="line">console.log(set.has(1)); // true</span><br><span class="line">console.log(arr.indexOf(1)); // 0</span><br></pre></td></tr></table></figure><p>这里，arr要比set更麻烦些，因为你通常需要对arr做一次检查：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var isExist = arr.indexOf(1) !== -1;</span><br></pre></td></tr></table></figure><p><strong>tip</strong>：ES6中有一个Array.prototype.includes()方法，它的作用类似于has()。</p><h2 id="插入-新增元素"><a href="#插入-新增元素" class="headerlink" title="插入/新增元素"></a>插入/新增元素</h2><p><strong>Array</strong>：</p><ul><li>Array.prototype.push()：将元素添加到数组的末尾；时间复杂度O(1)；</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.push(4); // [1,2,3,4]</span><br></pre></td></tr></table></figure><ul><li>Array.prototype.unshift()：将元素添加到数组的开头；时间复杂度O(n)；</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.unshift(3);</span><br><span class="line">arr.unshift(5,6);</span><br></pre></td></tr></table></figure><p><strong>Set</strong></p><ul><li>在Set中，只有一种方法可以添加新元素，Set.prototype.add()。由于Set必须使它的set成员保持“独一无二”的属性，所以在每次调用add()时，Set需要检查所有成员以确保在继续之前没有重复。通常，add()方法将耗费O(n)的运行时间，但由于使用了hash table的实现方法，实际上Set中的add()只需要时间O(1)。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set.add(3); //&#123;1,2,3&#125; </span><br><span class="line">set.add(4); //&#123;1,2,3,4&#125;</span><br></pre></td></tr></table></figure><p>因此，这里Set在添加元素时与Array几乎相同。</p><h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><p><strong>Array</strong></p><p>使Array如此受欢迎的原因之一是它提供了许多不同的方法来删除元素，例如：</p><ul><li>Pop()：删除最后一个元素，时间复杂度为O(1)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6];</span><br><span class="line">arr.pop(); // return 6, [1,2,3,4,5]</span><br></pre></td></tr></table></figure><ul><li>Shift()：删除第一个元素，时间复杂度为O(n)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6];</span><br><span class="line">arr.shift(); // return 1, [2,3,4,5,6]</span><br></pre></td></tr></table></figure><ul><li>Splice(index, deleteCount)：删除从index到deleteCount区间的元素</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5,6];</span><br><span class="line">arr.splice(0,2); // return [1,2], arr = [3,4,5,6]</span><br></pre></td></tr></table></figure><p><strong>Set</strong></p><p>与此同时，在Set里，我们会用：</p><ul><li>Delete(element)：删除一个Set中特定的元素</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.delete(4) // &#123;1,2,3,5,6&#125;，4是元素，而不是索引</span><br></pre></td></tr></table></figure><ul><li>clear()：删除Set中的所有元素</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.clear() // &#123;&#125;</span><br></pre></td></tr></table></figure><p>和Set相比，Array为我们提供了更多的原生功能（reduce()，reverse()，sort()等…），而Set目前只具有上面提到的基本功能。那么我们为什么会更喜欢Set呢？</p><h2 id="Set和Array的适用场合？"><a href="#Set和Array的适用场合？" class="headerlink" title="Set和Array的适用场合？"></a>Set和Array的适用场合？</h2><ul><li>首先，Set和Array是不同那个的，它诞生的目的并不是要取代Array，而是为了弥补Array的不足。由于Set只包含不同的元素，也就是说，它拥有一项自动去重的功能，这会在一定程度上减轻我们的工作。</li><li>Set又叫集合，和我们在数学课里学到的集合是同一个概念，它提供了内置的交集（intersect），并集（union）和差集（difference）等方法。</li><li>数组适用于这种情况：我们希望保持元素的排序以便于快速访问，或者进行大量修改（删除或新增元素），或者任何需要对元素进行直接的索引访问的操作场景。</li></ul><p>总而言之，我认为Set的关键点在于“不同”，以及需要整合不同的数据集的时候，它才是更加高效的。在此情况之外，Array通常是更好的选择。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Set和Array是什么？&quot;&gt;&lt;a href=&quot;#Set和Array是什么？&quot; class=&quot;headerlink&quot; title=&quot;Set和Array是什么？&quot;&gt;&lt;/a&gt;Set和Array是什么？&lt;/h2&gt;&lt;p&gt;绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数组对象是使用单独的变量名在内存中存储的一系列的值。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例如：&lt;code&gt;[1,2,3,1]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那什么是set呢？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例如：&lt;code&gt;{1，2，3}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;根据定义，Array和Set在技术上是两种不同的概念。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Web开发" scheme="http://zyqvizzz.github.io/categories/Web%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="ECMAScript 6" scheme="http://zyqvizzz.github.io/tags/ECMAScript-6/"/>
+    
+      <category term="JavaScript" scheme="http://zyqvizzz.github.io/tags/JavaScript/"/>
+    
+      <category term="数据结构" scheme="http://zyqvizzz.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开发一款基于Nas星云链的Web APP</title>
+    <link href="http://zyqvizzz.github.io/%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENas%E6%98%9F%E4%BA%91%E9%93%BE%E7%9A%84Web%20APP/"/>
+    <id>http://zyqvizzz.github.io/开发一个基于Nas星云链的Web APP/</id>
+    <published>2018-05-08T10:31:09.000Z</published>
+    <updated>2018-08-15T15:38:29.478Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一步</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一步&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="区块链" scheme="http://zyqvizzz.github.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="JavaScript" scheme="http://zyqvizzz.github.io/tags/JavaScript/"/>
+    
+      <category term="区块链" scheme="http://zyqvizzz.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Node.js学习：使用loopback做邮箱验证</title>
     <link href="http://zyqvizzz.github.io/Node.js%E5%AD%A6%E4%B9%A0%EF%BC%9A%E4%BD%BF%E7%94%A8loopback%E5%81%9A%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81/"/>
     <id>http://zyqvizzz.github.io/Node.js学习：使用loopback做邮箱验证/</id>
@@ -255,6 +315,28 @@
   </entry>
   
   <entry>
+    <title>空相城设定集</title>
+    <link href="http://zyqvizzz.github.io/%E7%A9%BA%E7%9B%B8%E5%9F%8E/"/>
+    <id>http://zyqvizzz.github.io/空相城/</id>
+    <published>2017-06-18T06:18:09.000Z</published>
+    <updated>2018-08-20T05:58:20.002Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="空相城设定"><a href="#空相城设定" class="headerlink" title="空相城设定"></a>空相城设定</h1><h2 id="一、起源"><a href="#一、起源" class="headerlink" title="一、起源"></a>一、起源</h2><p>公元265年，司马炎建立西晋，时任朝廷祝师的吴叶朴对黑暗的权利更迭感到绝望，于是化名梶生，辞官归田，潜心研究术法；公元288年，梶生根据洛阳城的结构，等比例创造了一个虚幻的空相城，筛选了第一批洛阳城的名士文人并将其带入幻城。少年陆科就是在此期间被梶生选中。同年，梶生卒；公元291年，贾皇后发动宫变，屠杀杨太后及一众族人党羽，独揽大权之后，遂开始实施恐怖统治。此时，梶生在空相城的继承者是来自淮南巫师家族的凤昆吾，梶生死后，为了维持空相城，凤昆吾需要让更多人进入这座城市。公元291年到公元296年，由于空相城人口大增，早期的规则难以为继，所以凤昆吾请来了自己的同族，凤华裳和凤华姒(宫明月)协助他共同重整空相城的规则。公元295年，凤昆吾由于和凤氏姐妹意见不合，于是选择退出空相城，第三代继承者由妹妹凤华姒接任。</p><a id="more"></a><h2 id="二、捻物术"><a href="#二、捻物术" class="headerlink" title="二、捻物术"></a>二、捻物术</h2><p>梶生擅长一种名为“捻物”的巫术，本质上是一种空间开辟和复制术；他可以捻出城市，人，甚至是雷电和雨水；他的目的是建立一个自由有序的新世界。</p><h2 id="三、空相城的自进化运行原理"><a href="#三、空相城的自进化运行原理" class="headerlink" title="三、空相城的自进化运行原理"></a>三、空相城的自进化运行原理</h2><h3 id="阶段一："><a href="#阶段一：" class="headerlink" title="阶段一："></a>阶段一：</h3><p><strong>能量节点和能量分发</strong>。每个人都作为一个能量节点支撑着空相城的运作，每个人都拥有空相城的决策权。能量代表金钱，不需要发行，为了达到尽可能公正的目的，梶生设计了一个复杂的能量出产机制。只能根据特定的劳动和工作来获取。第一阶段的末期，梶生的精力有限，他在设计了自然规则和礼法约束等基本原则之后，把继续创造新事物的权利交给了所有能量拥有者。</p><h3 id="阶段二"><a href="#阶段二" class="headerlink" title="阶段二"></a>阶段二</h3><p><strong>虚灵集议和能量证明</strong>。凤昆吾是梶生的朋友，也是第一个进入空相城的外来者。他理解梶生想法的同时又另有分歧，他有一个乌合之众的理论，并信奉精英社会和哲人王的制度。他在掌控空相城之后开辟了一个新的制度。虚灵集议：类似于元老院，最早进入空相城的人大都为经过梶生挑选出来的人，他们积累了更多的能量。所以他在这一百人里随机抽取了二十三人来为空相城做决策，每隔一年重新随机抽取一次，尽可能保证公平。能量证明：也可以看作贡献度证明，为空相城做出贡献的人，可以进入虚灵集议名单。最早的一百人里，也可以根据贡献度的衡量标准被移除虚灵集议名单。一百人只是下限，但不是上限。</p><h3 id="阶段三："><a href="#阶段三：" class="headerlink" title="阶段三："></a>阶段三：</h3><p><strong>螟蛉祭祀和善恶罐</strong>。虚灵集议制度导致了势力的诞生，势力越大的人可以针对性的做出更高的贡献，同时，势力大的人一旦拉拢了名单里的半数以上参选者，虚灵集议制度就将变成寡头制度。凤昆吾正是因为无法解决这个问题，从而被凤氏姐妹排挤出了空相城。凤氏姐妹在虚灵集议制度中成为最大的一股势力之后，把制度转为极权制度。螟蛉祭祀制度在后面单独介绍。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>空相城历经三个阶段：</p><ul><li>一人一票的民主制。</li><li>集中选票的议会制。</li><li>极权制。</li></ul><h2 id="四、顶层机构的变迁"><a href="#四、顶层机构的变迁" class="headerlink" title="四、顶层机构的变迁"></a>四、顶层机构的变迁</h2><h3 id="第一代"><a href="#第一代" class="headerlink" title="第一代"></a>第一代</h3><ul><li>祝使：梶生(吴叶朴)；</li><li>司星署祭司：凤昆吾；</li><li>明悬寺主理：代面使(陆行简)；</li><li>小戴阁阁主：梶生</li></ul><h3 id="第二代"><a href="#第二代" class="headerlink" title="第二代"></a>第二代</h3><ul><li>祝使：凤昆吾；</li><li>司星署祭司：麻衣道长；</li><li>明悬寺主理：代面使(疯剑客)；</li><li>小戴阁阁主：苏住</li></ul><h3 id="第三代"><a href="#第三代" class="headerlink" title="第三代"></a>第三代</h3><ul><li>祝使：苏住</li><li>司星署祭司：凤华姒(宫明月)</li><li>明悬寺主理：代面使(疯剑客)；</li><li>小戴阁阁主：梁宿直</li></ul><blockquote><p>tip：据此设定，陆科是在最早期就是空相城的顶层人物，陆科生于公元273年，师出鬼谷鱼丈翁门下，289年他只有16岁。所以他在出师当年就被梶生带进了空相城，并让他掌管明悬寺，这暗示梶生对于鬼谷十分了解。进一步挖掘下去，鬼谷永远只有两名对立的门徒，如苏秦张仪和庞涓孙膑；而鱼丈翁和梶生年纪相仿，所以他们应该是师兄弟的关系。这也为陆科破解空相城的秘密提供了合理的支撑点，捻物术源于鬼谷。</p></blockquote><pre><code>明悬寺：早期是一个秘密机构，职责和现实里的御史台相近。梶生建立明悬寺的目的也是出于一种公平的想法，它的最终形态是有规则无意识，类似于一种机器人的存在，他知道陆科做不到这一点，所以一直在试着复制自己和陆科，并希望把这些复制品打造成一支维护规则的监察队伍。明悬寺的后期，就是第二阶段，梶生没能创造出真正稳定版本的卫道者，他的最后一个复制品是他和陆科的结合体，疯剑客。疯剑客和陆科的权利很大，梶生几乎为他们开放了全部的壁垒。</code></pre><p><br></p><pre><code>祝使：祝使的角色在梶生之后，理论上就没有了制定新规则的权利，他唯一的权利是为空相城继续吸纳人口。但实际上，梶生和凤昆吾达成了协议，凤昆吾依然拥有一部分修改规则的权利。另外淮南凤氏精通咒禁术，凤昆吾错信了凤氏姐妹，最终导致了空相城的失控。</code></pre><p><br></p><pre><code>司星署司星署祭司是维持民众信仰的角色，在前两个阶段，这个角色只用来赋予规则合理性。到了第三代，神权占据了制高点，祭司才成为空相城的实际控制者。</code></pre><p><br></p><pre><code>小戴阁：记录机构，记录规则，选票，以及在空相城发生的一切，这也是空相城共识体系最重要的支撑点。小戴阁代表着能量的总集。</code></pre><h2 id="五、分叉区"><a href="#五、分叉区" class="headerlink" title="五、分叉区"></a>五、分叉区</h2><p>梶生的空相城在凤氏姐妹的控制下彻底瓦解。她们在空相城的原有基础上重写规则，导致空相城被分叉，分叉行动之所以能成功，最重要的原因在于她们推行的极权制度。她们强制定期收集所有人的能量，并监控了所有人的善恶罐。当她们希望分叉的时候，绝大部分的能量都集中于她们的手上，所以她们在神不知鬼不觉的情况下完成了分叉。</p><h2 id="六、侧翼区"><a href="#六、侧翼区" class="headerlink" title="六、侧翼区"></a>六、侧翼区</h2><p>梶生离世，凤昆吾退出，第一批空相城百姓被凤氏控制，陆科找到了梶生和凤昆吾留下的线索，在吴人坊里为自己打通了一条侧翼。在不承认分叉区的基础上，沿袭空相城原有的基本准则，开辟了一个凤氏姐妹无法控制的独立空间，但是它由实实在在的存在于分叉区之中。进入侧翼的过程如下：从分叉区回到空相城（原始区），再从原始区中签订协议进入侧翼。从分叉回到原始区的方式是在每次投票过程中投给原始区，从原始区进入侧翼的方式是把自己在原始区里的能量冻结，并和陆科完成赌博共识，然后侧翼将为他提供和原始区中相同的一比一的能量。</p><h2 id="七、昭告天下的空相城"><a href="#七、昭告天下的空相城" class="headerlink" title="七、昭告天下的空相城"></a>七、昭告天下的空相城</h2><p>陆科在洛阳城里和说书人联手，将空相城的存在和开辟侧翼的方式公之于众。随后，一大批组织成功进入了空相城，并创造了自己的侧翼。以石季伦为首的金谷园，海公子的平乐街，陆科的罔极阁，王孙农的明王道馆。除此之外，还有凤昆吾的方孔山庄，贺平子的捞鱼坊，苏青璃的春深居，以及骆天师的灵棋门等。他们有人选择在分叉区上创造侧翼，有人选择在原始区上创造侧翼。至此，空相城在真实的世界里成了人尽皆知的存在。</p><h2 id="八、空相城的第四阶段"><a href="#八、空相城的第四阶段" class="headerlink" title="八、空相城的第四阶段"></a>八、空相城的第四阶段</h2><p>东宫把空相城带到了第四个阶段，他们的侧翼是一条无需能量维持的联盟区。创造此链的人是方春木，也就是陆科在鬼谷中的师兄。他是太子党成员。联盟区的优势在于稳定性和时间行进速度。</p><h2 id="九、联盟区和共生区"><a href="#九、联盟区和共生区" class="headerlink" title="九、联盟区和共生区"></a>九、联盟区和共生区</h2><p>侧翼，分叉区和原始区都属于共生区，依托的是每个人(节点)为整个体系提供的能量，它有一大缺点，小戴阁需要记录大量信息，这会导致时间的行进将会越来越慢，大量的能量聚集在小戴阁里，同时错综复杂的事件也会让时间和自然规律等客观条件变得不稳定。侧翼有助于帮助原始区或分叉减轻负载，但效果有限。联盟区牺牲了分发能量的过程，把能量集中于一个或多个节点上，它将保持充足的稳定性和时间行进速度。但如果想破坏联盟，只需要控制住特定的节点即可。</p><h2 id="十、原始区和分叉区的空相城"><a href="#十、原始区和分叉区的空相城" class="headerlink" title="十、原始区和分叉区的空相城"></a>十、原始区和分叉区的空相城</h2><h3 id="原始区"><a href="#原始区" class="headerlink" title="原始区"></a>原始区</h3><p>空相城是梶生为躲避现实所做的一个实验，是他对理想世界的构想。他建立了最初的规则，不干预城市的发展，使城市进入完全自制运行的状态。</p><p>城市里没有刑罚、疾病、饥荒，没有统治阶级，礼法是城市运行的唯一准则。</p><p><strong>穷蝉神</strong></p><p>早期空相城里的最高神。人们依照礼仪供奉穷蝉神，目的是为了保持意识形态的统一。</p><p><strong>虎蛟草</strong></p><p>在指定的区域种植虎蛟草是获取能量的唯一方式。</p><p><strong>仓库</strong></p><p>早期的能量只能转化为单一的钱币，用于置换由梶生创造出的物品和食物，但是梶生的精力是有限的，他无法创造出世界上所有的东西，所以也就无法为人们提供定制化的物品。</p><p>他解决此问题的方式是开放差异协定。他广泛收集原材料图鉴，而后将大批原材料“捻”到空相城的仓库里。人们在接下来的种植活动中可以由能量换取原材料进行定制化的加工。</p><p><strong>机构</strong></p><ul><li>大学：教育部门</li><li>平乐馆：礼乐部门</li><li>明悬寺：监察部门</li><li>司星署：祭祀部门</li><li>小戴阁：内务部门，统一执行资源分配和登记等事务</li></ul><h3 id="分叉区"><a href="#分叉区" class="headerlink" title="分叉区"></a>分叉区</h3><p><strong>品级制度</strong></p><p>分一到九品，把所有人分为不同等级。</p><p>将定期触发降雨，丰收，生育等事件</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;空相城设定&quot;&gt;&lt;a href=&quot;#空相城设定&quot; class=&quot;headerlink&quot; title=&quot;空相城设定&quot;&gt;&lt;/a&gt;空相城设定&lt;/h1&gt;&lt;h2 id=&quot;一、起源&quot;&gt;&lt;a href=&quot;#一、起源&quot; class=&quot;headerlink&quot; title=&quot;一、起源&quot;&gt;&lt;/a&gt;一、起源&lt;/h2&gt;&lt;p&gt;公元265年，司马炎建立西晋，时任朝廷祝师的吴叶朴对黑暗的权利更迭感到绝望，于是化名梶生，辞官归田，潜心研究术法；公元288年，梶生根据洛阳城的结构，等比例创造了一个虚幻的空相城，筛选了第一批洛阳城的名士文人并将其带入幻城。少年陆科就是在此期间被梶生选中。同年，梶生卒；公元291年，贾皇后发动宫变，屠杀杨太后及一众族人党羽，独揽大权之后，遂开始实施恐怖统治。此时，梶生在空相城的继承者是来自淮南巫师家族的凤昆吾，梶生死后，为了维持空相城，凤昆吾需要让更多人进入这座城市。公元291年到公元296年，由于空相城人口大增，早期的规则难以为继，所以凤昆吾请来了自己的同族，凤华裳和凤华姒(宫明月)协助他共同重整空相城的规则。公元295年，凤昆吾由于和凤氏姐妹意见不合，于是选择退出空相城，第三代继承者由妹妹凤华姒接任。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="小说" scheme="http://zyqvizzz.github.io/categories/%E5%B0%8F%E8%AF%B4/"/>
+    
+    
+      <category term="假面生死簿" scheme="http://zyqvizzz.github.io/tags/%E5%81%87%E9%9D%A2%E7%94%9F%E6%AD%BB%E7%B0%BF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在Hexo NexT中集成Algolia搜索服务时遇到的坑</title>
     <link href="http://zyqvizzz.github.io/%E5%9C%A8Hexo%20NexT%E4%B8%AD%E4%BD%BF%E7%94%A8Algolia%E6%90%9C%E7%B4%A2%E6%9C%8D%E5%8A%A1%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/"/>
     <id>http://zyqvizzz.github.io/在Hexo NexT中使用Algolia搜索服务时遇到的坑/</id>
@@ -277,30 +359,6 @@
     
     
       <category term="Hexo" scheme="http://zyqvizzz.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开发一款基于Nas星云链的Web APP</title>
-    <link href="http://zyqvizzz.github.io/%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENas%E6%98%9F%E4%BA%91%E9%93%BE%E7%9A%84Web%20APP/"/>
-    <id>http://zyqvizzz.github.io/开发一个基于Nas星云链的Web APP/</id>
-    <published>2017-05-08T10:31:09.000Z</published>
-    <updated>2018-08-15T15:37:24.708Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一步</p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第一步&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="区块链" scheme="http://zyqvizzz.github.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    
-      <category term="JavaScript" scheme="http://zyqvizzz.github.io/tags/JavaScript/"/>
-    
-      <category term="区块链" scheme="http://zyqvizzz.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
   </entry>
   
