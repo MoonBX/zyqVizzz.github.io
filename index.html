@@ -300,6 +300,215 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/星云链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="断桥百晓生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/012.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="百晓生的兵器谱">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/星云链/" itemprop="url">毕业论文</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-05T13:18:09+08:00">
+                2018-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/区块链/" itemprop="url" rel="index">
+                    <span itemprop="name">区块链</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基于区块链的菜谱发布网站的设计和实现（Nebulas星云链）"><a href="#基于区块链的菜谱发布网站的设计和实现（Nebulas星云链）" class="headerlink" title="基于区块链的菜谱发布网站的设计和实现（Nebulas星云链）"></a>基于区块链的菜谱发布网站的设计和实现（Nebulas星云链）</h1><h2 id="1-绪论"><a href="#1-绪论" class="headerlink" title="1. 绪论"></a>1. 绪论</h2><h3 id="1-1-研究目的"><a href="#1-1-研究目的" class="headerlink" title="1.1 研究目的"></a>1.1 研究目的</h3><p>区块链源自于比特币，而比特币被认为是一种去中心化，非普遍全球可支付的电子加密货币。从本质上讲，区块链技术，是一种交易记录的存储技术，它对交易记录进行永久性存储，而且存储之后永远无法删除，只能按照次序加入新的交易，由此对所有的交易历史进行永不结束的记载。这个看似简单的功能描述，实则含义深刻。它促使我们重新思考如何去创建交易、存储数据和交换资产，更重要的是，它将有机会彻底重塑当今社会的信任机制和价值体系。</p>
+<p>技术的革新瞬息万变，区块链技术在历经8年的考验后终于站在了风口之上，2017年底，各种令人眼花缭乱的区块链项目，如同雨后春笋一般走进了我们的视野，其涉及到的应用场景种类繁杂，包括游戏，金融，支付，存储，物联网等等。但是由于区块链扩容难，速率慢且易拥堵，以及共识算法不完善等难题尚未被完全攻克，至今仍未有一个真正可以大规模落地的区块链应用出现。</p>
+<p>我们站在时代的前沿，自然不能够故步自封，尽管这项技术至今还处在起步阶段，但我们仍然有足够的理由和热情去拥抱这项颠覆性的技术，所以在几个公链项目里如eos、eth、zilliqa和nas中进行了学习和甄选之后，我选择了由前蚂蚁金服区块链团队出品的星云链作为这次研究的对象。</p>
+<h3 id="1-2-发展历程"><a href="#1-2-发展历程" class="headerlink" title="1.2 发展历程"></a>1.2 发展历程</h3><p>星云链（NAS）团队在2017年组成，并于2018年3月29日发布主网，是一套基于以太坊构建一个能够量化价值尺度、具备自进化能力，并能促进区块链生态建设的区块链系统，号称为”区块链中的搜索引擎”和”下一个谷歌”。</p>
+<p>星云链的共识算法为POD（proof-of-devotion），即贡献度证明算法。贡献度证明算法本质上是对于在星云链上创造价值（比如 DApp ）的开发者进行奖励。如果你开发了一个 DApp 并且在星云链的网络上表现良好，你可以选择成为一个验证者（比如：验证一笔提交的交易），然后，作为回报，你会收到星云链发给你的代币奖励。该算法理论上可以实现一套可行的共识体系，但是“哲人王”式的共识体系使大部分代币持有者失去记账权，把信任建立在了技术水平上的做法并不能解除中心化的风险，它依然存在较大的争议。</p>
+<p>星云链上其他内容有星云指数和星云原力。星云指数(Nebulas Rank)用于构建价值尺度：星云指数通过对星云链上产生的行为进行挖掘分析，将每个实体的重要程度进行量化。将区块链的维度提升到了三维，用它来衡量区块链世界的价值尺度，这样就可以对区块链里的应用进行分级评价，让优秀的应用浮现出来。而星云原力(Nebulas Force)则是自进化的区块链技术：目前的区块链项目的核心协议基本都是不支持升级的，包括智能合约，一经部署，就无法再升级。其中潜在的危害无疑是巨大的。对于这个问题，星云链提出了星云原力，一个区块链自进化的机智，用来对核心协议，智能合约进行升级和修复。在星云链中，代币持有者可以通过投票来达到升级智能合约的目的，如果大多数投票通过，那么 bug 就可以随时被修复。</p>
+<p>星云链以DApp为核心概念，较之于同样以DApp为核心的航母级项目eos.io，它特有星云指数和星云原力对于普通开发者要更加友好。尽管和目前的每个公链项目一样，它自身仍然有众多瑕疵和不确定性，但对于入门DApp开发、理解智能合约来说，它是当仁不让的首选。</p>
+<h3 id="1-3-开发工具的选择"><a href="#1-3-开发工具的选择" class="headerlink" title="1.3 开发工具的选择"></a>1.3 开发工具的选择</h3><h4 id="1-3-1-IDE选择"><a href="#1-3-1-IDE选择" class="headerlink" title="1.3.1 IDE选择"></a>1.3.1 IDE选择</h4><p>由于星云链为开发者提供了一套简单的JS-SDK，智能合约可以完全由JS编写，所以我选择了WebStorm作为本项目的开发工具。</p>
+<h4 id="1-3-2-操作系统选择"><a href="#1-3-2-操作系统选择" class="headerlink" title="1.3.2 操作系统选择"></a>1.3.2 操作系统选择</h4><p>MacOS high Sierra。运行星云网络需要在Golang环境下运行，MacOS配置复杂的环境要比Windows更加简单，避免不必要的错误和麻烦。</p>
+<h4 id="1-3-3-Web容器选择"><a href="#1-3-3-Web容器选择" class="headerlink" title="1.3.3 Web容器选择"></a>1.3.3 Web容器选择</h4><p>基于区块链的DApp项目不需要服务端支持，智能合约将取代服务端所具备的功能，部署在星云链主网。</p>
+<h4 id="1-3-4-数据库"><a href="#1-3-4-数据库" class="headerlink" title="1.3.4 数据库"></a>1.3.4 数据库</h4><p>本地数据存储在Chrome浏览器提供的Web SQL 数据库中，远程数据存储在区块链中。</p>
+<h4 id="1-3-5-编程框架"><a href="#1-3-5-编程框架" class="headerlink" title="1.3.5 编程框架"></a>1.3.5 编程框架</h4><p>前端使用JQuery开发，智能合约使用原生Javascript编写。前端及智能合约皆遵循ECMAScript5的标准编写。</p>
+<h2 id="2-系统分析"><a href="#2-系统分析" class="headerlink" title="2. 系统分析"></a>2. 系统分析</h2><h3 id="2-1-主要功能"><a href="#2-1-主要功能" class="headerlink" title="2.1 主要功能"></a>2.1 主要功能</h3><ol>
+<li>查看最热菜谱，该菜谱列表由点赞最多的菜谱组成；</li>
+<li>查看所有菜谱，在这里可以按需找到任何想要的菜谱；</li>
+<li>点击菜谱图片，可以查看菜谱的具体做法和步骤；</li>
+<li>通过搜索功能，快速找到自己想要的菜谱；</li>
+<li>按步骤录入并分享自己的菜谱；</li>
+<li>点赞或打赏，打赏星云币，使用该功能必须下载浏览器钱包插件。</li>
+</ol>
+<h3 id="2-2-方案论证"><a href="#2-2-方案论证" class="headerlink" title="2.2 方案论证"></a>2.2 方案论证</h3><ol>
+<li>网站界面：美食网站首先要考虑到的是食欲，所以界面将以干净和温暖的色调为主，通过简洁的界面，让用户感受到舒适的气氛。</li>
+<li>功能实现：由于目前关于DApp开发的资料及其稀少，星云网络也处于非常早期的阶段，所以本项目将实现一些最基本的功能：单个菜谱的新增、修改、查看，过滤获取数据资源，以及最主要的星云币打赏交易。</li>
+</ol>
+<h3 id="2-3-基本思路"><a href="#2-3-基本思路" class="headerlink" title="2.3 基本思路"></a>2.3 基本思路</h3><h4 id="2-3-1-网站UI的思路"><a href="#2-3-1-网站UI的思路" class="headerlink" title="2.3.1 网站UI的思路"></a>2.3.1 网站UI的思路</h4><p>UI，对于设计者来说，可以算是最简单的地方；但对于用户一个良好的用户界面非常重要，普通用户根本不会关心你的界面时怎么实现的，他所关心的是UI是否美丽、大方、好看。如果一个网站的UI不好看，可能用户根本没有用下去的心思了。本网站使用Bootstrap作为UI框架，简单优美。</p>
+<h4 id="2-3-2-获取数据的思路"><a href="#2-3-2-获取数据的思路" class="headerlink" title="2.3.2 获取数据的思路"></a>2.3.2 获取数据的思路</h4><p>所有数据均来自于Nebulas星云链，制定合适的抓取策略，获得所需要的资源。</p>
+<h4 id="2-3-3-权限控制思路"><a href="#2-3-3-权限控制思路" class="headerlink" title="2.3.3 权限控制思路"></a>2.3.3 权限控制思路</h4><p>本应用的角色不存在多重权限，因为应用定位为菜谱分享网站，而不可篡改、不可回滚和可溯源则是区块链建立的初衷。所以它不需要一个特定的管理员去进行中心化的操作，那如何防止用户上传垃圾信息呢？解决方法是提高用户的上传成本，用户每上传一条信息，都需要向星云网络支付一定数额的星云币，这就在一定程度上保证了垃圾信息不会泛滥。但是当真正出现垃圾信息需要被清理的需求时，我们在星云网络上则有另一套更新策略，目前这一套dapp更新策略在整个区块链行业中尚不拥有一个真正完美的解决方案，所以在此不予讨论。把星云链钱包插件绑定在应用上，则钱包地址将成为标识身份的唯一ID，用户可以在发布菜谱的时候填写个人信息，如昵称等，它们不会跟着真正的数据一起上链，但是钱包地址将作为一个钩子获取到它们。</p>
+<h3 id="2-4-主要问题"><a href="#2-4-主要问题" class="headerlink" title="2.4 主要问题"></a>2.4 主要问题</h3><p>该应用最主要的问题是更新和迭代，这也是目前所有dapp面临的问题，每次更新就意味着要把智能合约替换，而替换智能合约，就相当于弃用了旧的服务器，所有数据将从零开始。</p>
+<h3 id="2-5-网站要求"><a href="#2-5-网站要求" class="headerlink" title="2.5  网站要求"></a>2.5  网站要求</h3><p>适配绝大部分IE9以上浏览器和移动端浏览器，有较快的响应速度，并且有合理的错误提示和404页面。</p>
+<h2 id="附录：中英文翻译"><a href="#附录：中英文翻译" class="headerlink" title="附录：中英文翻译"></a>附录：中英文翻译</h2><p><strong>英文部分</strong></p>
+<h3 id="A-Guide-to-99-Fault-Tolerant-Consensus（excerpt）"><a href="#A-Guide-to-99-Fault-Tolerant-Consensus（excerpt）" class="headerlink" title="A Guide to 99% Fault Tolerant Consensus（excerpt）"></a>A Guide to 99% Fault Tolerant Consensus（excerpt）</h3><p>We’ve heard for a long time that it’s possible to achieve consensus with 50% fault tolerance in a synchronous network where messages broadcasted by any honest node are guaranteed to be received by all other honest nodes within some known time period (if an attacker has more than 50%, they can perform a “51% attack”, and there’s an analogue of this for any algorithm of this type). We’ve also heard for a long time that if you want to relax the synchrony assumption, and have an algorithm that’s “safe under asynchrony”, the maximum achievable fault tolerance drops to 33% (PBFT, Casper FFG, etc all fall into this category). But did you know that if you add even more assumptions (specifically, you require observers, ie. users that are not actively participating in the consensus but care about its output, to also be actively watching the consensus, and not just downloading its output after the fact), you can increase fault tolerance all the way to 99%?</p>
+<p>This has in fact been known for a long time; Leslie Lamport’s famous 1982 paper “The Byzantine Generals Problem” (link here) contains a description of the algorithm. The following will be my attempt to describe and reformulate the algorithm in a simplified form.</p>
+<p>Suppose that there are N consensus-participating nodes, and everyone agrees who these nodes are ahead of time (depending on context, they could have been selected by a trusted party or, if stronger decentralization is desired, by some proof of work or proof of stake scheme). We label these nodes 0….N-1. Suppose also that there is a known bound D on network latency plus clock disparity (eg. D = 8 seconds). Each node has the ability to publish a value at time T (a malicious node can of course propose values earlier or later than T). All nodes wait (N-1) * D seconds, running the following process. Define x : i as “the value x signed by node i”, x : i : j as “the value x signed by i, and that value and signature together signed by j”, etc. The proposals published in the first stage will be of the form v: i for some v and i, containing the signature of the node that proposed it.</p>
+<p>If a validator i receives some message v : i[1] : … : i[k], where i[1] … i[k] is a list of indices that have (sequentially) signed the message already (just v by itself would count as k=0, and v:i as k=1), then the validator checks that (i) the time is less than T + k * D, and (ii) they have not yet seen a valid message containing v; if both checks pass, they publish v : i[1] : … : i[k] : i.</p>
+<p>At time T + (N-1) * D, nodes stop listening. At this point, there is a guarantee that honest nodes have all “validly seen” the same set of values.</p>
+<p><img src="https://vitalik.ca/files/Lamport.png" alt=""></p>
+<p><em>Node 1 (red) is malicious, and nodes 0 and 2 (grey) are honest. At the start, the two honest nodes make their proposals y and x, and the attacker proposes both w and z late. w reaches node 0 on time but not node 2, and z reaches neither node on time. At time T + D, nodes 0 and 2 rebroadcast all values they’ve seen that they have not yet broadcasted, but add their signatures on (x and w for node 0, y for node 2). Both honest nodes saw {x, y, w}.</em></p>
+<p>If the problem demands choosing one value, they can use some “choice” function to pick a single value out of the values they have seen (eg. they take the one with the lowest hash). The nodes can then agree on this value.</p>
+<p>Now, let’s explore why this works. What we need to prove is that if one honest node has seen a particular value (validly), then every other honest node has also seen that value (and if we prove this, then we know that all honest nodes have seen the same set of values, and so if all honest nodes are running the same choice function, they will choose the same value). Suppose that any honest node receives a message v : i[1] : … : i[k] that they perceive to be valid (ie. it arrives before time T + k * D). Suppose x is the index of a single other honest node. Either x is part of {i[1] … i[k]} or it is not.</p>
+<ul>
+<li>In the first case (say x = i[j] for this message), we know that the honest node x had already broadcasted that message, and they did so in response to a message with j-1 signatures that they received before time T + (j-1) <em> D, so they broadcast their message at that time, and so the message must have been received by all honest nodes before time T + j </em> D.</li>
+<li>In the second case, since the honest node sees the message before time T + k <em> D, then they will broadcast the message with their signature and guarantee that everyone, including x, will see it before time T + (k+1) </em> D.</li>
+</ul>
+<p>Notice that the algorithm uses the act of adding one’s own signature as a kind of “bump” on the timeout of a message, and it’s this ability that guarantees that if one honest node saw a message on time, they can ensure that everyone else sees the message on time as well, as the definition of “on time” increments by more than network latency with every added signature.</p>
+<p>In the case where one node is honest, can we guarantee that passive observers (ie. non-consensus-participating nodes that care about knowing the outcome) can also see the outcome, even if we require them to be watching the process the whole time? With the scheme as written, there’s a problem. Suppose that a commander and some subset of k (malicious) validators produce a message v : i[1] : …. : i[k], and broadcast it directly to some “victims” just before time T + k <em> D. The victims see the message as being “on time”, but when they rebroadcast it, it only reaches all honest consensus-participating nodes after T + k </em> D, and so all honest consensus-participating nodes reject it.</p>
+<p><img src="http://vitalik.ca/files/Lamport2.png" alt=""></p>
+<p>But we can plug this hole. We require D to be a bound on two times network latency plus clock disparity. We then put a different timeout on observers: an observer accepts v : i[1] : …. : i[k] before time T + (k - 0.5) <em> D. Now, suppose an observer sees a message an accepts it. They will be able to broadcast it to an honest node before time T + k </em> D, and the honest node will issue the message with their signature attached, which will reach all other observers before time T + (k + 0.5) * D, the timeout for messages with k+1 signatures.</p>
+<p><img src="http://vitalik.ca/files/Lamport3.png" alt=""></p>
+<p><strong>中文部分</strong></p>
+<h3 id="99-容错共识算法（节选）"><a href="#99-容错共识算法（节选）" class="headerlink" title="99%容错共识算法（节选）"></a>99%容错共识算法（节选）</h3><p>作者：维塔利克·布特林</p>
+<p>很长时间以来，我们都听说过在同步网络中有可能实现50%容错共识，其中通过任何诚实节点广播的消息保证能够在某个已知时段内被所有其他诚实节点收到（如果攻击者拥有超过50%的节点，他们能够实施“51%攻击”，对于任何此类的算法来说，都有类似的情况）。</p>
+<p>我们也一直听说，如果您希望放宽同步假设，并有个“在异步下安全”的算法，那么最大可实现的容错率下降到33%（PBFT，Casper FFG等都属于这一类）。但是，如果增加更多的假设（具体来说，需要观察者也积极地观察共识，并且不只是事后才下载它的输出），就能够将容错率一直提高到99%。</p>
+<p>事实上，这早已为人所知，Leslie Lamport写于1982年的著名论文《拜占庭将军问题》描述了该算法。下面是我尝试用简化的形式描述和重构该算法。</p>
+<p>假设有N个节点，我们分别用0，……，N-1来标识，并且在网络延迟加上时钟差异有个已知的界限D（比如，D = 8 秒）。每个节点具有在时间T（恶意节点当然能够早于或晚于时间T）发布一个值的能力。所有节点等待(N - 1) * D秒，运行以下过程。定义 x : i是“节点i签署的值x”，x : i : j 是“节点i签署的值x，并且由节点j签署该值和签名”，等等。在第一个阶段发布的提议以v : i的形式出现，代表某些v和i，包含提出它的节点的签名。</p>
+<p>如果验证节点i收到一些消息 v : i[1] : … : i[k]，其中 i[k]是一个索引列表，这些索引已经（顺序）签署了消息（只是v本身将计为 k = 0，并且 v:i计为 k = 1），然后，验证器检查（i）时间是否小于 T + K * D，以及（ii）它们是否还没看到一个有效的包含v的消息。如果这两个验证都通过，那么，它们就发布 v : i[1] : … : i[k] : i。</p>
+<p>在 T + (N-1) * D时刻，节点停止侦听，它们使用一些“选择”功能从所有它们已经看到的有效消息中选择一个值（比如，它们取最高的）。然后，它们决定这个值。</p>
+<p><img src="http://vitalik.ca/files/Lamport.png" alt=""></p>
+<p><em>节点1（红色）是恶意节点，而节点0和节点2（灰色）是诚实节点。一开始，这两个诚实节点给出它们的提议 y 和 x，攻击者晚提出w和 z，w准时到达节点0，但是没能准时到达节点2，z既没有准时到达节点0，也没有准时到达节点2。在 T + D时刻，节点0和节点2重新广播了它们看到但还没有广播过的所有值，并在上面添加了它们的签名（x和 w用于节点0，y用于节点2）。两个诚实节点都看到了{x，y，w}，然后，它们可以使用一些标准选择函数（即，按字母顺序，最高的：y）。</em></p>
+<p>现在，我们来探究一下这个为什么可行。我们需要证明的是，如果一个诚实节点已经看到一个特定值（有效的），然后，其他各个诚实节点也看到了该值（如果我们能证明这个，那么我们就知道所有的诚实节点在运行同样的选择函数，因此它们会输出相同的值）。假设任意一个诚实节点收到消息v : i[1] : … : i[k]，它们认为有效（即，它在 T + k * D时刻前到达）。 假设x是单个其他诚实节点的索引。那么，x要么是{i[1] … i[k]}的一部分，要么不是。</p>
+<ul>
+<li>在第一种情况下（设 x = i[j] 是这个消息），我们知道，诚实节点 x 已经广播了该消息，并且它们这么做是为了响应用在 T+ (j - 1)<em>D时刻前收到的带有j – 1个签名的消息，于是，它们在那个时刻广播了它们的消息，因此，在T+ j </em> D时刻前，所有诚实节点应该收到了该消息。</li>
+<li>在第二种情况下，由于诚实节点在T + k <em> D时刻前看到了该消息，然后，它们将广播带着它们签名的数据，并保证包括x在内的每个节点都会在 T + (k+1) </em> D时刻前看到该消息。</li>
+</ul>
+<p>注意，该算法使用添加自己签名的操作，作为一种在超时消息上的“撞击”，并且这种能力保证，如果一个诚实节点看到准时的消息，它们可以确保其他任何节点也能准时看到该消息，因为“准时”的定义随着每个增加的签名而增加更多的网络延时。</p>
+<p>在这种情况下，如果一个节点是诚实的，我们能否保证被动观察者也能够看到输出，就算我们要求它们一直观察过程？按照所写的计划，存在一个问题。假设命令者和一些k（恶意）验证器子集产生了一个消息 v : i[1] : … : i[k]，并且在 T + k <em> D时刻前，直接把它广播给了一些“受害者”。这些受害者认为该消息是准时的，但是，当它们重新广播该消息时，它只在 T + k </em> D时刻后到达所有诚实参与共识的节点，因此，所有诚实参与共识的节点都会拒绝该消息。</p>
+<p><img src="https://res.infoq.com/articles/vitalik-buterin-proposes-consensus-algorithm/zh/resources/6272-1535217006997.png" alt=""></p>
+<p>但是，我们可以补上这个漏洞。我们要求D受两倍网络时延加上时钟差异的约束。然后，我们对观察者施加不同的超时：观察者在 T + (k – 0.5) <em> D时刻前收到 v : i[1] : … : i[k]。现在，假设观察者看到一个消息并接收它。它们将能够在 T + k </em> D时刻前广播给一个诚实节点，并且诚实节点会发出附有其签名的消息，该消息将在 T + (k + 0.5) * D时刻前达到所有其他观察者，那么，具有 k+1个签名的消息超时。</p>
+<p><img src="https://res.infoq.com/articles/vitalik-buterin-proposes-consensus-algorithm/zh/resources/5173-1535217007241.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/asynchronous/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1382,162 +1591,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/ES6 SetvsArray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="断桥百晓生">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/012.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="百晓生的兵器谱">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/ES6 SetvsArray/" itemprop="url">ES6：Set和Array</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T18:31:09+08:00">
-                2018-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Web开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Set和Array是什么？"><a href="#Set和Array是什么？" class="headerlink" title="Set和Array是什么？"></a>Set和Array是什么？</h2><p>绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？</p>
-<blockquote>
-<p>数组对象是使用单独的变量名在内存中存储的一系列的值。</p>
-</blockquote>
-<p>例如：<code>[1,2,3,1]</code></p>
-<p>那什么是set呢？</p>
-<blockquote>
-<p>Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配</p>
-</blockquote>
-<p>例如：<code>{1，2，3}</code></p>
-<p>根据定义，Array和Set在技术上是两种不同的概念。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/ES6 SetvsArray/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/开发一个基于Nas星云链的Web APP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,7 +1737,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/Node.js学习：使用loopback做邮箱验证/">
+    <link itemprop="mainEntityOfPage" href="http://zyqvizzz.github.io/ES6 SetvsArray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="断桥百晓生">
@@ -1703,7 +1756,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Node.js学习：使用loopback做邮箱验证/" itemprop="url">Node.js学习：使用loopback做邮箱验证</a></h1>
+                <a class="post-title-link" href="/ES6 SetvsArray/" itemprop="url">ES6：Set和Array</a></h1>
         
 
         <div class="post-meta">
@@ -1715,8 +1768,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-01T17:52:57+08:00">
-                2017-07-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T18:31:09+08:00">
+                2018-05-08
               </time>
             
 
@@ -1776,10 +1829,20 @@
 
       
         
-          <h2 id="注册用户"><a href="#注册用户" class="headerlink" title="注册用户"></a>注册用户</h2><p>LoopBack用户模型提供了注册新用户并确认其电子邮件地址的方法。您还可以使用loopback-component-passport模块将登录信息与Facebook，Google和其他第三方提供商集成。</p>
+          <h2 id="Set和Array是什么？"><a href="#Set和Array是什么？" class="headerlink" title="Set和Array是什么？"></a>Set和Array是什么？</h2><p>绝不会有任何一个前端开发者会告诉你说他不熟悉数组(Array)，我们每天都会无数次的和数组打交道，但到底数组是什么呢？</p>
+<blockquote>
+<p>数组对象是使用单独的变量名在内存中存储的一系列的值。</p>
+</blockquote>
+<p>例如：<code>[1,2,3,1]</code></p>
+<p>那什么是set呢？</p>
+<blockquote>
+<p>Set是一种抽象数据类型，只包含不同的元素/对象，而不需要按索引顺序分配</p>
+</blockquote>
+<p>例如：<code>{1，2，3}</code></p>
+<p>根据定义，Array和Set在技术上是两种不同的概念。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Node.js学习：使用loopback做邮箱验证/#more" rel="contents">
+            <a class="btn" href="/ES6 SetvsArray/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1871,7 +1934,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1893,7 +1956,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
