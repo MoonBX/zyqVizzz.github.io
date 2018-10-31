@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zyqvizzz.github.io/"/>
-  <updated>2018-09-05T08:20:27.501Z</updated>
+  <updated>2018-10-31T14:59:17.255Z</updated>
   <id>http://zyqvizzz.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Loopback3.0构建应用程序</title>
+    <link href="http://zyqvizzz.github.io/%E4%BD%BF%E7%94%A8Loopback3.0%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://zyqvizzz.github.io/使用Loopback3.0构建应用程序/</id>
+    <published>2018-11-04T14:00:03.000Z</published>
+    <updated>2018-10-31T14:59:17.255Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="几个名称概念"><a href="#几个名称概念" class="headerlink" title="几个名称概念"></a>几个名称概念</h2><h3 id="StrongLoop"><a href="#StrongLoop" class="headerlink" title="StrongLoop"></a>StrongLoop</h3><p><strong>strongloop是Node.js开发套件的一个集合：</strong></p><ul><li>LoopBack框架</li><li>slc命令行工具</li><li>StrongLoop PM    ：负责Node.js的进程监控、性能分析、负载均衡</li><li>StrongLoop Arc</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;几个名称概念&quot;&gt;&lt;a href=&quot;#几个名称概念&quot; class=&quot;headerlink&quot; title=&quot;几个名称概念&quot;&gt;&lt;/a&gt;几个名称概念&lt;/h2&gt;&lt;h3 id=&quot;StrongLoop&quot;&gt;&lt;a href=&quot;#StrongLoop&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+      <category term="Web开发" scheme="http://zyqvizzz.github.io/categories/Web%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="nodeJS" scheme="http://zyqvizzz.github.io/tags/nodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>基于区块链的菜谱发布网站的设计和实现（Nebulas星云链）</title>
@@ -227,30 +252,6 @@
   </entry>
   
   <entry>
-    <title>开发一款基于Nas星云链的Web APP</title>
-    <link href="http://zyqvizzz.github.io/%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENas%E6%98%9F%E4%BA%91%E9%93%BE%E7%9A%84Web%20APP/"/>
-    <id>http://zyqvizzz.github.io/开发一个基于Nas星云链的Web APP/</id>
-    <published>2018-05-08T10:31:09.000Z</published>
-    <updated>2018-08-15T15:38:29.478Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一步</p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第一步&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="区块链" scheme="http://zyqvizzz.github.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    
-      <category term="JavaScript" scheme="http://zyqvizzz.github.io/tags/JavaScript/"/>
-    
-      <category term="区块链" scheme="http://zyqvizzz.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ES6：Set和Array</title>
     <link href="http://zyqvizzz.github.io/ES6%20SetvsArray/"/>
     <id>http://zyqvizzz.github.io/ES6 SetvsArray/</id>
@@ -283,6 +284,30 @@
       <category term="ECMAScript 6" scheme="http://zyqvizzz.github.io/tags/ECMAScript-6/"/>
     
       <category term="数据结构" scheme="http://zyqvizzz.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开发一款基于Nas星云链的Web APP</title>
+    <link href="http://zyqvizzz.github.io/%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8ENas%E6%98%9F%E4%BA%91%E9%93%BE%E7%9A%84Web%20APP/"/>
+    <id>http://zyqvizzz.github.io/开发一个基于Nas星云链的Web APP/</id>
+    <published>2018-05-08T10:31:09.000Z</published>
+    <updated>2018-08-15T15:38:29.478Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一步</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一步&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="区块链" scheme="http://zyqvizzz.github.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+    
+      <category term="JavaScript" scheme="http://zyqvizzz.github.io/tags/JavaScript/"/>
+    
+      <category term="区块链" scheme="http://zyqvizzz.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
   </entry>
   
